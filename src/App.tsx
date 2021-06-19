@@ -1,11 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 
-function App() {
+import HomeScreen from "./screens/HomeScreen";
+
+interface Props {}
+
+const App: FC<Props> = () => {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
+    <>
+      <HomeScreen />
+    </>
   );
-}
+};
 
 export default App;
