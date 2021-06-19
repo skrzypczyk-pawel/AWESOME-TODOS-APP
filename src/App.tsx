@@ -1,11 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 
-import ScreenWrapper from "./components/ScreenWrapper";
+import HomeScreen from "./screens/HomeScreen";
 
-const App = () => {
+interface Props {}
+
+const App: FC<Props> = () => {
   return (
     <>
-      <ScreenWrapper />
+      <HomeScreen />
     </>
   );
 };

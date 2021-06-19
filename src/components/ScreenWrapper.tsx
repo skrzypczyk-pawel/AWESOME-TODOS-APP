@@ -1,16 +1,16 @@
-import React from "react";
-import HomeScreen from "../screens/HomeScreen";
-import Header from "./Header";
+import { css, StyleSheet } from "aphrodite";
+import React, { FC } from "react";
+import { colors } from "styles/palette";
 import Footer from "./Footer";
+import Header from "./Header";
 
-import { StyleSheet, css } from "aphrodite";
-import { COLORS } from "../styles/palette";
+interface Props {}
 
-const ScreenWrapper = () => {
+const ScreenWrapper: FC<Props> = ({ children }) => {
   return (
     <main className={css(styles.wrapper)}>
       <Header />
-      <HomeScreen />
+      {children}
       <Footer />
     </main>
   );
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     display: "flex",
     margin: "0 auto",
-    boxShadow: `0px 0px 15px ${COLORS.grayBlue}`,
+    boxShadow: `0px 0px 15px ${colors.grayBlue}`,
     width: "60vw",
     minWidth: "600px",
     maxWidth: "800px",
     minHeight: "100vh",
-    backgroundColor: COLORS.background,
+    backgroundColor: colors.white,
   },
 });
 

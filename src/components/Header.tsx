@@ -1,9 +1,12 @@
 import React from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { COLORS } from "../styles/palette";
+import { colors } from "styles/palette";
+import { FC } from "react";
 
-const Header = () => {
+interface Props {}
+
+const Header: FC<Props> = () => {
   return (
     <header className={css(styles.header)}>
       <h1 className={css(styles.title)}>Awesome todos app</h1>
@@ -15,17 +18,17 @@ const Header = () => {
 const styles = StyleSheet.create({
   header: {
     padding: 10,
-    backgroundColor: COLORS.grayBlue,
+    backgroundColor: colors.grayBlue,
   },
   title: {
     textTransform: "uppercase",
     textAlign: "center",
-    color: COLORS.skyBlue,
+    color: colors.skyBlue,
   },
   subtitle: {
     marginRight: 30,
     textAlign: "right",
-    color: COLORS.lightBlue,
+    color: colors.lightBlue,
   },
 });
 

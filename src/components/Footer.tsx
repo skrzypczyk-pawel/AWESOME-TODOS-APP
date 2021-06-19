@@ -1,9 +1,12 @@
 import React from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { COLORS } from "../styles/palette";
+import { colors } from "styles/palette";
+import { FC } from "react";
 
-const Footer = () => {
+interface Props {}
+
+const Footer: FC<Props> = () => {
   return (
     <footer className={css(styles.footer)}>
       <p>Footer</p>
@@ -13,9 +16,9 @@ const Footer = () => {
 
 const styles = StyleSheet.create({
   footer: {
-    backgroundColor: COLORS.grayBlue,
+    backgroundColor: colors.grayBlue,
     textAlign: "center",
-    color: COLORS.white,
+    color: colors.white,
   },
 });
 
