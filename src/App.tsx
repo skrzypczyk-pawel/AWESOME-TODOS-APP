@@ -1,11 +1,13 @@
 import React from "react";
 
-function App() {
+import ScreenWrapper from "./components/ScreenWrapper";
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
+    <>
+      <ScreenWrapper />
+    </>
   );
-}
+};
 
 export default App;
