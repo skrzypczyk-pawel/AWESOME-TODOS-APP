@@ -25,6 +25,7 @@
     "import/prefer-default-export": "off",
     "linebreak-style": "off",
     "quotes": "off",
+    "quote-props": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
