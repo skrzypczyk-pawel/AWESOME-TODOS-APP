@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { StyleSheet, css } from "aphrodite";
 import ScreenWrapper from "components/ScreenWrapper";
 import { colors } from "styles/palette";
+import { i18n } from "locale";
 
 interface Props {}
 
@@ -10,7 +11,7 @@ const HomeScreen: FC<Props> = () => {
   return (
     <ScreenWrapper>
       <div className={css(styles.homeScreen)}>
-        <h3>home screen</h3>
+        <h3>{i18n.t("header:title")}</h3>
       </div>
     </ScreenWrapper>
   );
