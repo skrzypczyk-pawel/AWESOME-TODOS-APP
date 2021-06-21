@@ -1,7 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { FC } from "react";
 import ScreenWrapper from "components/ScreenWrapper";
 import { colors } from "styles/palette";
 

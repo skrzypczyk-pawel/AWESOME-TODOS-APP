@@ -1,8 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
-import { FC } from "react";
 
 interface Props {}
 
@@ -13,7 +12,6 @@ const Footer: FC<Props> = () => {
     </footer>
   );
 };
-
 const styles = StyleSheet.create({
   footer: {
     backgroundColor: colors.grayBlue,
