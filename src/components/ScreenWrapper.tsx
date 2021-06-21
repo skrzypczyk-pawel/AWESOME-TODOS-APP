@@ -1,5 +1,5 @@
-import { css, StyleSheet } from "aphrodite";
 import React, { FC } from "react";
+import { css, StyleSheet } from "aphrodite";
 import { colors } from "styles/palette";
 import Footer from "./Footer";
 import Header from "./Header";
