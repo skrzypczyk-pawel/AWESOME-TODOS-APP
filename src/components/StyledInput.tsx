@@ -4,6 +4,7 @@ import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
 
 interface Props {
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   value: string;
   error?: string;
   focused?: boolean;
@@ -20,83 +21,79 @@ const StyledInput: FC<Props> = ({
   focused = false,
   label,
   onBlur,
+  onChange,
   onFocus,
   placeholder,
   style,
   type = "text",
-  value = "",
+  value,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
-  const [isFocused, setIsFocused] = useState(focused);
+  const [isFocused, setIsFocused] = useState<boolean>(focused);
 
   const handleFocus = () => {
     setIsFocused(true);
-    if (onFocus) {
-      onFocus();
-    }
+    onFocus?.();
   };
   const handleBlur = () => {
     setIsFocused(false);
-    if (onBlur) {
-      onBlur();
-    }
+    onBlur?.();
   };
 
   return (
-    <div>
+    <>
       <label htmlFor={label}>
         {label}
         <input
           id={label}
           onFocus={handleFocus}
-          onChange={(event) => setInputValue(event.target.value)}
+          onChange={onChange}
           onBlur={handleBlur}
           type={type}
           className={css(
             styles.input,
-            isFocused && styles.inputFcs,
+            isFocused && styles.focused,
             style,
             !!error && styles.error
           )}
           placeholder={placeholder}
-          value={inputValue}
+          value={value}
         />
       </label>
       {!!error && <p className={css(styles.errorText)}>{error}</p>}
-    </div>
+    </>
   );
 };
 const styles = StyleSheet.create({
   input: {
     transition: "0.5s",
     margin: 2,
-    boxShadow: `3px 3px 5px ${colors.grayBlue}`,
+    boxShadow: `3px 3px 5px ${colors.blue4}`,
     border: `1px solid ${colors.white}`,
     outline: "none",
     borderRadius: 5,
     backgroundColor: colors.white,
   },
-  inputFcs: {
+  focused: {
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.skyBlue}`,
-      backgroundColor: colors.vLightBlue,
+      boxShadow: `3px 3px 5px ${colors.blue6}`,
+      backgroundColor: colors.blue2,
     },
   },
   error: {
-    boxShadow: `3px 3px 5px ${colors.red}`,
-    border: `1px solid ${colors.lightRed}`,
-    backgroundColor: colors.lightRed,
+    boxShadow: `3px 3px 5px ${colors.red1}`,
+    border: `1px solid ${colors.red2}`,
+    backgroundColor: colors.red2,
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.red}`,
+      boxShadow: `3px 3px 5px ${colors.red1}`,
       backgroundColor: colors.skin,
-      color: colors.lightRed,
+      color: colors.red2,
     },
   },
   errorText: {
     marginTop: 3,
     fontSize: 12,
     textTransform: "none",
-    color: colors.red,
+    color: colors.red1,
   },
 });
 

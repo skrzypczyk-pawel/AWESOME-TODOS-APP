@@ -17,17 +17,17 @@ const Header: FC<Props> = () => {
 const styles = StyleSheet.create({
   header: {
     padding: 10,
-    backgroundColor: colors.grayBlue,
+    backgroundColor: colors.blue4,
   },
   title: {
     textTransform: "uppercase",
     textAlign: "center",
-    color: colors.skyBlue,
+    color: colors.blue6,
   },
   subtitle: {
     marginRight: 30,
     textAlign: "right",
-    color: colors.lightBlue,
+    color: colors.blue5,
   },
 });
 

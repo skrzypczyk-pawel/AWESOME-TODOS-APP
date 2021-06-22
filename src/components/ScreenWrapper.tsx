@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     display: "flex",
     margin: "0 auto",
-    boxShadow: `0px 0px 15px ${colors.grayBlue}`,
+    boxShadow: `0px 0px 15px ${colors.blue4}`,
     width: "60vw",
     minWidth: "600px",
     maxWidth: "800px",
