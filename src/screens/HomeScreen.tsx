@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 
-import { StyleSheet, css } from "aphrodite";
 import ScreenWrapper from "components/ScreenWrapper";
+import StyledInput from "components/StyledInput";
+
+import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
 import { i18n } from "locale";
 
@@ -12,6 +14,8 @@ const HomeScreen: FC<Props> = () => {
     <ScreenWrapper>
       <div className={css(styles.homeScreen)}>
         <h3>{i18n.t("header:title")}</h3>
+        <StyledInput value="" placeholder="Search..." />
+        <StyledInput value="" placeholder="Error..." error="Error Text!!!" />
       </div>
     </ScreenWrapper>
   );
