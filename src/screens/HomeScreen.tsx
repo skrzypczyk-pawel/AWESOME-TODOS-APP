@@ -11,21 +11,19 @@ interface Props {}
 
 const HomeScreen: FC<Props> = () => {
   const [inputValue1, setInputValue1] = useState<string>("");
-  const [inputValue2, setInputValue2] = useState<string>("");
+
+  const handleInputValue = (value: string): void => {
+    setInputValue1(value);
+  };
+
   return (
     <ScreenWrapper>
       <div className={css(styles.homeScreen)}>
         <h3>{i18n.t("header:title")}</h3>
         <StyledInput
           value={inputValue1}
-          onChange={(event) => setInputValue1(event.target.value)}
-          placeholder="Search..."
-        />
-        <StyledInput
-          value={inputValue2}
-          onChange={(event) => setInputValue2(event.target.value)}
-          placeholder="Error..."
-          error="Error Text!!!"
+          onChange={handleInputValue}
+          placeholder={i18n.t("common:search")}
         />
       </div>
     </ScreenWrapper>

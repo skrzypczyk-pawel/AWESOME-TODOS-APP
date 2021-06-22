@@ -4,7 +4,7 @@ import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
 
 interface Props {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: (_value: string) => void;
   value: string;
   error?: string;
   focused?: boolean;
@@ -46,7 +46,7 @@ const StyledInput: FC<Props> = ({
         <input
           id={label}
           onFocus={handleFocus}
-          onChange={onChange}
+          onChange={(event) => onChange(event.target.value)}
           onBlur={handleBlur}
           type={type}
           className={css(
