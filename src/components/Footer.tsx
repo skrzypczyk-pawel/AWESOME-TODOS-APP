@@ -14,7 +14,7 @@ const Footer: FC<Props> = () => {
 };
 const styles = StyleSheet.create({
   footer: {
-    backgroundColor: colors.grayBlue,
+    backgroundColor: colors.blue4,
     textAlign: "center",
     color: colors.white,
   },

@@ -2,13 +2,12 @@ export const translations = {
   common: {
     all: "All",
     cancel: "Cancel",
-    ok: "OK",
-    email: "Email",
     confirm: "Confirm",
-    emailAddress: "Email Address",
+    ok: "OK",
+    search: "Search...",
   },
   header: {
-    "title": "awesome todo app",
-    "subtitle": "- main list",
+    title: "awesome todo app",
+    subtitle: "- main list",
   },
 };
