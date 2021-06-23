@@ -8,5 +8,6 @@ export const colors = {
   red2: "#F56856",
   red1: "#FF0005",
   skin: "#FFDED1",
+  transparent: "rgba(0, 0, 0, 0)",
   white: "#FFF",
 };
