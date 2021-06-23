@@ -5,6 +5,7 @@ export const translations = {
     confirm: "Confirm",
     ok: "OK",
     search: "Search...",
+    type: "Type something...",
   },
   header: {
     title: "awesome todo app",

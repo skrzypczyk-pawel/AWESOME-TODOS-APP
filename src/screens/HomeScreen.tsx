@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 
 import ScreenWrapper from "components/ScreenWrapper";
 import StyledInput from "components/StyledInput";
+import TextArea from "components/TextArea";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
@@ -11,9 +12,13 @@ interface Props {}
 
 const HomeScreen: FC<Props> = () => {
   const [inputValue1, setInputValue1] = useState<string>("");
+  const [textareaValue1, setTextareaValue1] = useState<string>("");
 
   const handleInputValue = (value: string): void => {
     setInputValue1(value);
+  };
+  const handleTextareaValue = (value: string): void => {
+    setTextareaValue1(value);
   };
 
   return (
@@ -24,6 +29,12 @@ const HomeScreen: FC<Props> = () => {
           value={inputValue1}
           onChange={handleInputValue}
           placeholder={i18n.t("common:search")}
+        />
+        <TextArea
+          value={textareaValue1}
+          onChange={handleTextareaValue}
+          placeholder={i18n.t("common:type")}
+          style={styles.textarea}
         />
       </div>
     </ScreenWrapper>
@@ -40,6 +51,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     color: colors.blue4,
+  },
+  textarea: {
+    minHeight: "10vh",
   },
 });
 
