@@ -6,6 +6,9 @@ export const translations = {
     ok: "OK",
     search: "Search...",
   },
+  todo: {
+    newEntry: "New Entry",
+  },
   header: {
     title: "awesome todo app",
     subtitle: "- main list",

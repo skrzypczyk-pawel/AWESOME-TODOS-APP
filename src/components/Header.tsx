@@ -1,16 +1,18 @@
 import React, { FC } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles/palette";
+import { colors } from "styles";
 import { i18n } from "locale";
 
-interface Props {}
+interface Props {
+  subtitle: string;
+}
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = ({ subtitle }) => {
   return (
     <header className={css(styles.header)}>
       <h1 className={css(styles.title)}>{i18n.t("header:title")}</h1>
-      <h2 className={css(styles.subtitle)}>{i18n.t("header:subtitle")}</h2>
+      <h2 className={css(styles.subtitle)}>{subtitle}</h2>
     </header>
   );
 };

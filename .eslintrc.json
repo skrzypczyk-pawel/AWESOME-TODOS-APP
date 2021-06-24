@@ -41,7 +41,7 @@
         "tsx": "never"
       }
     ],
-    "no-console": "warn",
+    "no-console": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-empty-interface": [
@@ -50,9 +50,11 @@
         "allowSingleExtends": true
       }
     ],
+    "react/jsx-one-expression-per-line": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
+    "object-curly-newline": "off",
     "comma-dangle": ["off", "never"]
   },
   "settings": {
