@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles/palette";
+import { colors } from "styles";
 
 interface Props {
   onChange: (_value: string) => void;

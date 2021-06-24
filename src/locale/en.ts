@@ -7,6 +7,9 @@ export const translations = {
     search: "Search...",
     type: "Type something...",
   },
+  todo: {
+    newEntry: "New Entry",
+  },
   header: {
     title: "awesome todo app",
     subtitle: "- main list",

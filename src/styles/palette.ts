@@ -6,8 +6,10 @@ export const colors = {
   blue4: "#375570",
   blue5: "#2D92F0",
   blue6: "#77B7F2",
+  lightBlue: "#48c8ef",
   red2: "#F56856",
   red1: "#FF0005",
   skin: "#FFDED1",
+  transparent: "rgba(0, 0, 0, 0)",
   white: "#FFF",
 };

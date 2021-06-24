@@ -5,7 +5,7 @@ import StyledInput from "components/StyledInput";
 import TextArea from "components/TextArea";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles/palette";
+import { colors } from "styles";
 import { i18n } from "locale";
 
 interface Props {}
