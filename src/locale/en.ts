@@ -6,7 +6,7 @@ export const translations = {
     ok: "OK",
     search: "Search...",
   },
-  button: {
+  todo: {
     newEntry: "New Entry",
   },
   header: {

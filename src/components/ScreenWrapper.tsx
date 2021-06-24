@@ -1,10 +1,13 @@
 import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors } from "styles/palette";
+import { colors } from "styles";
+
+import { PlusIcon } from "assets/icons";
+
+import { i18n } from "locale";
 import HoverButton from "components/HoverButton";
 import Header from "./Header";
 import Footer from "./Footer";
-import PlusIcon from "../assets/icons/PlusIcon";
 
 interface Props {}
 
@@ -15,11 +18,10 @@ const ScreenWrapper: FC<Props> = ({ children }) => {
 
   return (
     <main className={css(styles.wrapper)}>
-      <Header />
+      <Header subtitle={i18n.t("header:subtitle")} />
       <HoverButton
         onClick={handleClick}
         icon={<PlusIcon />}
-        iconStyle={styles.icon}
         style={styles.button}
       />
       {children}
@@ -66,11 +68,6 @@ const styles = StyleSheet.create({
       boxShadow: `0px 0px 9px ${colors.blue6}`,
       backgroundColor: colors.blue2,
     },
-  },
-  icon: {
-    margin: 3,
-    width: "30px",
-    height: "30px",
   },
 });
 
