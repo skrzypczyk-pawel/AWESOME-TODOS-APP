@@ -3,6 +3,8 @@ import React, { FC, HTMLAttributes, useState } from "react";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles/palette";
 
+import StyledText from "./StyledText";
+
 interface Props {
   onChange: (_value: string) => void;
   value: string;
@@ -48,15 +50,15 @@ const TextArea: FC<Props> = ({
           onBlur={handleBlur}
           className={css(
             styles.textarea,
-            isFocused && styles.focused,
             style,
+            isFocused && styles.focused,
             !!error && styles.error
           )}
           placeholder={placeholder}
           value={value}
         />
       </label>
-      {!!error && <p className={css(styles.errorText)}>{error}</p>}
+      {!!error && <StyledText error>{error}</StyledText>}
     </>
   );
 };
@@ -68,8 +70,9 @@ const styles = StyleSheet.create({
     border: `1px solid ${colors.white}`,
     outline: "none",
     borderRadius: 5,
+    minHeight: "10vh",
     backgroundColor: colors.white,
-    color: colors.black1,
+    color: colors.black,
   },
   focused: {
     ":focus": {
@@ -87,12 +90,6 @@ const styles = StyleSheet.create({
       backgroundColor: colors.skin,
       color: colors.red2,
     },
-  },
-  errorText: {
-    marginTop: 3,
-    fontSize: 12,
-    textTransform: "none",
-    color: colors.red1,
   },
 });
 

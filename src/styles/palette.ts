@@ -1,5 +1,5 @@
 export const colors = {
-  black1: "#000",
+  black: "#000",
   blue1: "#2473BD",
   blue2: "#C4F9FF",
   blue3: "#154470",
@@ -7,8 +7,8 @@ export const colors = {
   blue5: "#2D92F0",
   blue6: "#77B7F2",
   lightBlue: "#48c8ef",
-  red2: "#F56856",
   red1: "#FF0005",
+  red2: "#F56856",
   skin: "#FFDED1",
   transparent: "rgba(0, 0, 0, 0)",
   white: "#FFF",

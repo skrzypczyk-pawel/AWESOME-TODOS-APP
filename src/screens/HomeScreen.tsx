@@ -3,10 +3,12 @@ import React, { FC, useState } from "react";
 import ScreenWrapper from "components/ScreenWrapper";
 import StyledInput from "components/StyledInput";
 import TextArea from "components/TextArea";
+import StyledText from "components/StyledText";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
 import { i18n } from "locale";
+import "assets/fonts/fonts.css";
 
 interface Props {}
 
@@ -28,14 +30,14 @@ const HomeScreen: FC<Props> = () => {
         <StyledInput
           value={inputValue1}
           onChange={handleInputValue}
-          placeholder={i18n.t("common:search")}
+          placeholder={i18n.t("textAreaPlaceholder:search")}
         />
         <TextArea
           value={textareaValue1}
           onChange={handleTextareaValue}
-          placeholder={i18n.t("common:type")}
-          style={styles.textarea}
+          placeholder={i18n.t("textAreaPlaceholder:type")}
         />
+        <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
       </div>
     </ScreenWrapper>
   );
@@ -52,8 +54,9 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: colors.blue4,
   },
-  textarea: {
-    minHeight: "10vh",
+  testText: {
+    margin: "20px 10vw",
+    fontFamily: "Ubuntu",
   },
 });
 

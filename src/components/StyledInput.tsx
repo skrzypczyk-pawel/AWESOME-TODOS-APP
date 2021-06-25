@@ -2,6 +2,7 @@ import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
+import StyledText from "./StyledText";
 
 interface Props {
   onChange: (_value: string) => void;
@@ -51,15 +52,15 @@ const StyledInput: FC<Props> = ({
           type={type}
           className={css(
             styles.input,
-            isFocused && styles.focused,
             style,
+            isFocused && styles.focused,
             !!error && styles.error
           )}
           placeholder={placeholder}
           value={value}
         />
       </label>
-      {!!error && <p className={css(styles.errorText)}>{error}</p>}
+      {!!error && <StyledText error>{error}</StyledText>}
     </>
   );
 };
