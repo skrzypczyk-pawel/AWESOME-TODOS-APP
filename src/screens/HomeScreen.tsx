@@ -4,6 +4,9 @@ import ScreenWrapper from "components/ScreenWrapper";
 import StyledInput from "components/StyledInput";
 import TextArea from "components/TextArea";
 import StyledText from "components/StyledText";
+import TodoList from "components/TodoList";
+
+import { todos } from "constants/todos";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
@@ -38,6 +41,7 @@ const HomeScreen: FC<Props> = () => {
           error={i18n.t("test:error")}
         />
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
+        <TodoList data={todos} />
       </div>
     </ScreenWrapper>
   );

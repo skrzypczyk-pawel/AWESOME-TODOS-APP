@@ -7,12 +7,12 @@ export const fonts = {
 
 export const typography = StyleSheet.create({
   body1: {
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: "16px",
     fontFamily: fonts.roboto,
   },
   altBody1: {
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: "16px",
     fontFamily: fonts.ubuntu,
   },
