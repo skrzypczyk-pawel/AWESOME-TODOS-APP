@@ -1,7 +1,8 @@
 import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
+import { colors } from "styles/palette";
+
 import StyledText from "./StyledText";
 
 interface Props {
@@ -14,10 +15,9 @@ interface Props {
   label?: string;
   placeholder?: string;
   style?: HTMLAttributes<HTMLInputElement>;
-  type?: "submit" | "text" | "number";
 }
 
-const StyledInput: FC<Props> = ({
+const TextArea: FC<Props> = ({
   error,
   focused = false,
   label,
@@ -26,7 +26,6 @@ const StyledInput: FC<Props> = ({
   onFocus,
   placeholder,
   style,
-  type = "text",
   value,
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(focused);
@@ -44,14 +43,13 @@ const StyledInput: FC<Props> = ({
     <>
       <label htmlFor={label}>
         {label}
-        <input
+        <textarea
           id={label}
           onFocus={handleFocus}
           onChange={(event) => onChange(event.target.value)}
           onBlur={handleBlur}
-          type={type}
           className={css(
-            styles.input,
+            styles.textarea,
             style,
             isFocused && styles.focused,
             !!error && styles.error
@@ -65,19 +63,21 @@ const StyledInput: FC<Props> = ({
   );
 };
 const styles = StyleSheet.create({
-  input: {
-    transition: "0.5s",
-    margin: 2,
+  textarea: {
+    transition: "0.1s",
+    margin: "10px auto",
     boxShadow: `3px 3px 5px ${colors.blue4}`,
     border: `1px solid ${colors.white}`,
     outline: "none",
     borderRadius: 5,
+    minHeight: "10vh",
     backgroundColor: colors.white,
+    color: colors.black,
   },
   focused: {
     ":focus": {
       boxShadow: `3px 3px 5px ${colors.blue6}`,
-      backgroundColor: colors.blue2,
+      backgroundColor: colors.white,
       color: colors.blue1,
     },
   },
@@ -91,12 +91,6 @@ const styles = StyleSheet.create({
       color: colors.red2,
     },
   },
-  errorText: {
-    marginTop: 3,
-    fontSize: 12,
-    textTransform: "none",
-    color: colors.red1,
-  },
 });
 
-export default StyledInput;
+export default TextArea;

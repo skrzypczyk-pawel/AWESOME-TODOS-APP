@@ -2,6 +2,8 @@ import React, { FC, useState } from "react";
 
 import ScreenWrapper from "components/ScreenWrapper";
 import StyledInput from "components/StyledInput";
+import TextArea from "components/TextArea";
+import StyledText from "components/StyledText";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
@@ -11,9 +13,13 @@ interface Props {}
 
 const HomeScreen: FC<Props> = () => {
   const [inputValue1, setInputValue1] = useState<string>("");
+  const [textareaValue1, setTextareaValue1] = useState<string>("");
 
   const handleInputValue = (value: string): void => {
     setInputValue1(value);
+  };
+  const handleTextareaValue = (value: string): void => {
+    setTextareaValue1(value);
   };
 
   return (
@@ -23,8 +29,15 @@ const HomeScreen: FC<Props> = () => {
         <StyledInput
           value={inputValue1}
           onChange={handleInputValue}
-          placeholder={i18n.t("common:search")}
+          placeholder={i18n.t("textAreaPlaceholder:search")}
         />
+        <TextArea
+          value={textareaValue1}
+          onChange={handleTextareaValue}
+          placeholder={i18n.t("textAreaPlaceholder:type")}
+          error={i18n.t("test:error")}
+        />
+        <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
       </div>
     </ScreenWrapper>
   );
@@ -40,6 +53,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     color: colors.blue4,
+  },
+  testText: {
+    margin: "20px 10vw",
   },
 });
 

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     ":hover": {
       opacity: 0.8,
       transform: "translateX(-70px)",
-      boxShadow: `0px 0px 9px ${colors.blue6}`,
+      boxShadow: `0px 0px 4px ${colors.blue6}`,
       backgroundColor: colors.blue2,
     },
   },

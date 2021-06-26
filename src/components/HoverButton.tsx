@@ -3,6 +3,7 @@ import React, { FC, HTMLAttributes, ReactElement } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { i18n } from "locale";
 import { colors } from "styles";
+import StyledText from "./StyledText";
 
 interface Props {
   onClick: () => void;
@@ -19,7 +20,7 @@ const HoverButton: FC<Props> = ({ onClick, icon, iconStyle, style }) => {
       className={css(styles.button, style)}
     >
       <div className={css(styles.icon, iconStyle)}>{icon}</div>
-      <p>{i18n.t("button:newEntry")}</p>
+      <StyledText>{i18n.t("todo:newEntry")}</StyledText>
     </button>
   );
 };
