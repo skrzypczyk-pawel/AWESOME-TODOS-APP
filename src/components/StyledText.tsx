@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginTop: 3,
-    fontFamily: "Ubuntu",
     color: colors.red1,
   },
 });
