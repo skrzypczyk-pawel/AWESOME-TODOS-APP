@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   },
   testText: {
     margin: "20px 10vw",
-    fontFamily: "Ubuntu",
   },
 });
 

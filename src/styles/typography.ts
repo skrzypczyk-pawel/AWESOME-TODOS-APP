@@ -11,7 +11,7 @@ export const typography = StyleSheet.create({
     lineHeight: "16px",
     fontFamily: fonts.roboto,
   },
-  error1: {
+  altBody1: {
     fontSize: 12,
     lineHeight: "16px",
     fontFamily: fonts.ubuntu,

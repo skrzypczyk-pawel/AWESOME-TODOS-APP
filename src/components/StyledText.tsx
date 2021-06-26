@@ -11,10 +11,10 @@ const StyledText: FC<Props> = ({ children, error, style }) => {
   return (
     <p
       className={css(
-        styles.text,
         typography.body1,
-        error && (styles.errorText, typography.error1),
-        style
+        styles.text,
+        style,
+        error && (styles.errorText, typography.altBody1)
       )}
     >
       {children}
