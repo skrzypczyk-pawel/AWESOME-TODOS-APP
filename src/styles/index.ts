@@ -1,2 +1,2 @@
 export { colors } from "./palette";
-export { typography } from "./typography";
+export { typography, fonts } from "./typography";

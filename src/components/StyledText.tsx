@@ -12,9 +12,9 @@ const StyledText: FC<Props> = ({ children, error, style }) => {
     <p
       className={css(
         styles.text,
-        style,
         typography.body1,
-        error && styles.errorText
+        error && (styles.errorText, typography.error1),
+        style
       )}
     >
       {children}
@@ -24,7 +24,6 @@ const StyledText: FC<Props> = ({ children, error, style }) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "Roboto",
     textTransform: "none",
   },
   errorText: {

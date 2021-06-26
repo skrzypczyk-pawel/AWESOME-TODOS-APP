@@ -52,9 +52,9 @@ const StyledInput: FC<Props> = ({
           type={type}
           className={css(
             styles.input,
-            style,
             isFocused && styles.focused,
-            !!error && styles.error
+            !!error && styles.error,
+            style
           )}
           placeholder={placeholder}
           value={value}

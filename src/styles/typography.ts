@@ -1,10 +1,19 @@
 import { StyleSheet } from "aphrodite";
-import "assets/fonts/fonts.css";
+
+export const fonts = {
+  roboto: "Roboto",
+  ubuntu: "Ubuntu",
+};
 
 export const typography = StyleSheet.create({
   body1: {
     fontSize: 12,
     lineHeight: "16px",
-    fontFamily: "Roboto",
+    fontFamily: fonts.roboto,
+  },
+  error1: {
+    fontSize: 12,
+    lineHeight: "16px",
+    fontFamily: fonts.ubuntu,
   },
 });

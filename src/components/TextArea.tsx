@@ -50,9 +50,9 @@ const TextArea: FC<Props> = ({
           onBlur={handleBlur}
           className={css(
             styles.textarea,
-            style,
             isFocused && styles.focused,
-            !!error && styles.error
+            !!error && styles.error,
+            style
           )}
           placeholder={placeholder}
           value={value}

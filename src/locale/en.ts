@@ -19,5 +19,6 @@ export const translations = {
   test: {
     lorem:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, aspernatur quam quibusdam, suscipit, maxime nisi nobis dolorem iure obcaecati molestiae voluptate qui nam laborum necessitatibus. Voluptas dolorem aperiam atque consequuntur!",
+    error: "It doesn't work!!!",
   },
 };

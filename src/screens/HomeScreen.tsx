@@ -8,7 +8,6 @@ import StyledText from "components/StyledText";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
 import { i18n } from "locale";
-import "assets/fonts/fonts.css";
 
 interface Props {}
 
@@ -36,6 +35,7 @@ const HomeScreen: FC<Props> = () => {
           value={textareaValue1}
           onChange={handleTextareaValue}
           placeholder={i18n.t("textAreaPlaceholder:type")}
+          error={i18n.t("test:error")}
         />
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
       </div>
