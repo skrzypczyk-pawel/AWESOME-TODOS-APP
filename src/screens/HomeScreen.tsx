@@ -38,7 +38,7 @@ const HomeScreen: FC<Props> = () => {
           placeholder={i18n.t("textAreaPlaceholder:type")}
           error={i18n.t("test:error")}
         />
-        <Loader loading={!!true} />
+        <Loader />
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
       </div>
     </ScreenWrapper>

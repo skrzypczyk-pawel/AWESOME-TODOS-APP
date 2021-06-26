@@ -5,21 +5,15 @@ import { PulseSpinner } from "react-spinners-kit";
 import { StyleSheet, css } from "aphrodite";
 
 export interface Props {
-  loading: boolean;
   color?: string;
   size?: number;
   style?: HTMLAttributes<HTMLDivElement>;
 }
 
-const Loader: FC<Props> = ({
-  loading,
-  color = colors.lightBlue,
-  size = 30,
-  style,
-}) => {
+const Loader: FC<Props> = ({ color = colors.lightBlue, size = 30, style }) => {
   return (
     <div className={css(styles.loader, style)}>
-      <PulseSpinner size={size} color={color} loading={loading} />
+      <PulseSpinner size={size} color={color} />
     </div>
   );
 };
