@@ -10,6 +10,8 @@ import {
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
 import { i18n } from "src/locale";
+import Loader from "src/components/Loader";
+
 
 interface Props {}
 
@@ -39,6 +41,7 @@ const HomeScreen: FC<Props> = () => {
           placeholder={i18n.t("textAreaPlaceholder:type")}
           error={i18n.t("test:error")}
         />
+        <Loader />
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
         <TodoList />
       </div>
