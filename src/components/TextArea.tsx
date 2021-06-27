@@ -1,9 +1,9 @@
 import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles/palette";
+import { colors } from "src/styles/palette";
 
-import StyledText from "./StyledText";
+import { StyledText } from "./StyledText";
 
 interface Props {
   onChange: (_value: string) => void;
@@ -17,7 +17,7 @@ interface Props {
   style?: HTMLAttributes<HTMLInputElement>;
 }
 
-const TextArea: FC<Props> = ({
+export const TextArea: FC<Props> = ({
   error,
   focused = false,
   label,
@@ -92,5 +92,3 @@ const styles = StyleSheet.create({
     },
   },
 });
-
-export default TextArea;

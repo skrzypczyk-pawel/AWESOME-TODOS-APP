@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors } from "styles";
+import { colors } from "src/styles";
 
-import { PlusIcon } from "assets/icons";
+import { PlusIcon } from "src/assets/icons";
 
-import { i18n } from "locale";
-import HoverButton from "components/HoverButton";
-import Header from "./Header";
-import Footer from "./Footer";
+import { i18n } from "src/locale";
+import { HoverButton } from "./HoverButton";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 interface Props {}
 
-const ScreenWrapper: FC<Props> = ({ children }) => {
+export const ScreenWrapper: FC<Props> = ({ children }) => {
   const handleClick = (): void => {
     console.log("it works!!!");
   };
@@ -70,5 +70,3 @@ const styles = StyleSheet.create({
     },
   },
 });
-
-export default ScreenWrapper;

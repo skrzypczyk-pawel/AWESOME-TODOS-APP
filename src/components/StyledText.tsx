@@ -1,13 +1,13 @@
 import React, { FC, HTMLAttributes } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors, typography } from "styles";
+import { colors, typography } from "src/styles";
 
 interface Props {
   error?: boolean;
   style?: HTMLAttributes<HTMLParagraphElement>;
 }
 
-const StyledText: FC<Props> = ({ children, error, style }) => {
+export const StyledText: FC<Props> = ({ children, error, style }) => {
   return (
     <p
       className={css(
@@ -31,5 +31,3 @@ const styles = StyleSheet.create({
     color: colors.red1,
   },
 });
-
-export default StyledText;

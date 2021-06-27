@@ -1,14 +1,17 @@
 import React, { FC, useState } from "react";
 
-import ScreenWrapper from "components/ScreenWrapper";
-import StyledInput from "components/StyledInput";
-import TextArea from "components/TextArea";
-import StyledText from "components/StyledText";
-
+import {
+  TodoList,
+  ScreenWrapper,
+  StyledInput,
+  TextArea,
+  StyledText,
+} from "src/components";
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
-import { i18n } from "locale";
-import Loader from "components/Loader";
+import { colors } from "src/styles";
+import { i18n } from "src/locale";
+import Loader from "src/components/Loader";
+
 
 interface Props {}
 
@@ -40,6 +43,7 @@ const HomeScreen: FC<Props> = () => {
         />
         <Loader />
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
+        <TodoList />
       </div>
     </ScreenWrapper>
   );

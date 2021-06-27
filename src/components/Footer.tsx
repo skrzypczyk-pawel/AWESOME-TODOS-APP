@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
+import { colors } from "src/styles";
 
 interface Props {}
 
-const Footer: FC<Props> = () => {
+export const Footer: FC<Props> = () => {
   return (
     <footer className={css(styles.footer)}>
       <p>Footer</p>
@@ -19,5 +19,3 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
-
-export default Footer;
