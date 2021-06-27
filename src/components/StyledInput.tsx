@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "styles";
-import StyledText from "./StyledText";
+import { StyledText } from "./StyledText";
 
 interface Props {
   onChange: (_value: string) => void;
@@ -17,7 +17,7 @@ interface Props {
   type?: "submit" | "text" | "number";
 }
 
-const StyledInput: FC<Props> = ({
+export const StyledInput: FC<Props> = ({
   error,
   focused = false,
   label,
@@ -98,5 +98,3 @@ const styles = StyleSheet.create({
     color: colors.red1,
   },
 });
-
-export default StyledInput;

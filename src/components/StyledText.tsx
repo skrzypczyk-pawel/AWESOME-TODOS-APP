@@ -7,7 +7,7 @@ interface Props {
   style?: HTMLAttributes<HTMLParagraphElement>;
 }
 
-const StyledText: FC<Props> = ({ children, error, style }) => {
+export const StyledText: FC<Props> = ({ children, error, style }) => {
   return (
     <p
       className={css(
@@ -31,5 +31,3 @@ const styles = StyleSheet.create({
     color: colors.red1,
   },
 });
-
-export default StyledText;

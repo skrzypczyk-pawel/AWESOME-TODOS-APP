@@ -8,7 +8,7 @@ interface Props {
   subtitle: string;
 }
 
-const Header: FC<Props> = ({ subtitle }) => {
+export const Header: FC<Props> = ({ subtitle }) => {
   return (
     <header className={css(styles.header)}>
       <h1 className={css(styles.title)}>{i18n.t("header:title")}</h1>
@@ -33,5 +33,3 @@ const styles = StyleSheet.create({
     color: colors.blue5,
   },
 });
-
-export default Header;

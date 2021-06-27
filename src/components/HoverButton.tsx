@@ -3,7 +3,7 @@ import React, { FC, HTMLAttributes, ReactElement } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { i18n } from "locale";
 import { colors } from "styles";
-import StyledText from "./StyledText";
+import { StyledText } from "./StyledText";
 
 interface Props {
   onClick: () => void;
@@ -12,7 +12,7 @@ interface Props {
   style?: HTMLAttributes<HTMLButtonElement>;
 }
 
-const HoverButton: FC<Props> = ({ onClick, icon, iconStyle, style }) => {
+export const HoverButton: FC<Props> = ({ onClick, icon, iconStyle, style }) => {
   return (
     <button
       type="button"
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     transition: "0.5s",
+    boxShadow: `-3px 3px 3px ${colors.blue6}`,
     border: `0px solid ${colors.white}`,
     width: 50,
     height: 50,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     ":hover": {
       opacity: 0.8,
       transform: "translateX(-70px)",
-      boxShadow: `0px 0px 9px ${colors.blue6}`,
+      boxShadow: `5px -5px 3px ${colors.blue6}`,
       backgroundColor: colors.blue2,
     },
   },
@@ -54,5 +55,3 @@ const styles = StyleSheet.create({
     height: "30px",
   },
 });
-
-export default HoverButton;

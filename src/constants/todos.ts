@@ -1,16 +1,17 @@
 import { i18n } from "locale";
+import { ITodo } from "types";
 
-export const todos = [
+export const todos: ITodo[] = [
   {
     id: "1",
-    text: i18n.t("test:todoText1"),
+    title: i18n.t("test:todoText1"),
   },
   {
     id: "2",
-    text: i18n.t("test:todoText2"),
+    title: i18n.t("test:todoText2"),
   },
   {
     id: "3",
-    text: i18n.t("test:todoText3"),
+    title: i18n.t("test:todoText3"),
   },
 ];
