@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
+import { colors } from "src/styles";
 import { StyledText } from "./StyledText";
 
 interface Props {

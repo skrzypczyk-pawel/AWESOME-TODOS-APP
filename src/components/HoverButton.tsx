@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes, ReactElement } from "react";
 
 import { css, StyleSheet } from "aphrodite";
-import { i18n } from "locale";
-import { colors } from "styles";
+import { i18n } from "src/locale";
+import { colors } from "src/styles";
 import { StyledText } from "./StyledText";
 
 interface Props {

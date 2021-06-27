@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors } from "styles";
+import { colors } from "src/styles";
 
-import { PlusIcon } from "assets/icons";
+import { PlusIcon } from "src/assets/icons";
 
-import { i18n } from "locale";
-import { HoverButton } from "components/HoverButton";
+import { i18n } from "src/locale";
+import { HoverButton } from "./HoverButton";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import { Todo } from "components/Todo/Todo";
-import { todos } from "constants/todos";
+import { Todo } from "src/components/Todo/Todo";
+import { todos } from "src/constants";
 
 export const TodoList: FC = () => {
   return (

@@ -6,10 +6,10 @@ import {
   StyledInput,
   TextArea,
   StyledText,
-} from "components";
+} from "src/components";
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
-import { i18n } from "locale";
+import { colors } from "src/styles";
+import { i18n } from "src/locale";
 
 interface Props {}
 

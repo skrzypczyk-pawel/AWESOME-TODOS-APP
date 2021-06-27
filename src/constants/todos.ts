@@ -1,5 +1,5 @@
-import { i18n } from "locale";
-import { ITodo } from "types";
+import { i18n } from "src/locale";
+import { ITodo } from "src/types";
 
 export const todos: ITodo[] = [
   {

@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors, typography } from "styles";
+import { colors, typography } from "src/styles";
 
 interface Props {
   error?: boolean;

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "styles";
-import { i18n } from "locale";
+import { colors } from "src/styles";
+import { i18n } from "src/locale";
 
 interface Props {
   subtitle: string;

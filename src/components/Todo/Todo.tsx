@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import { ITodo } from "types/index";
+import { ITodo } from "src/types";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors, typography } from "styles";
-import { i18n } from "locale";
+import { colors, typography } from "src/styles";
+import { i18n } from "src/locale";
 
 interface Props {
   todo: ITodo;
