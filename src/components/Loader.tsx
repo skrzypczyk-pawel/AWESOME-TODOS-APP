@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from "react";
 
-import { colors } from "styles";
+import { colors } from "src/styles";
 import { PulseSpinner } from "react-spinners-kit";
 import { StyleSheet, css } from "aphrodite";
 

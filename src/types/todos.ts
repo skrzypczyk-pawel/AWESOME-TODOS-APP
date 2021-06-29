@@ -2,6 +2,7 @@ export interface ITodo {
   id: string;
   title: string;
   category?: Category;
+  completed?: boolean;
   createdAt?: string;
   deadline?: string;
   description?: string;
