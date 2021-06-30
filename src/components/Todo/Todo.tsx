@@ -28,8 +28,8 @@ export const Todo: FC<Props> = ({ todo }) => {
         <p className={css(styles.taskName)}>{todo.title}</p>
       </div>
 
-      {todo.completed && (
-        <div className={css(styles.completed, typography.altBody1)}>
+      {todo.status === "done" && (
+        <div className={css(styles.done, typography.altBody1)}>
           <p>{i18n.t("todo:done")}</p>
         </div>
       )}
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   taskName: {
     lineHeight: "1",
   },
-  completed: {
+  done: {
     position: "absolute",
     right: "0",
     marginLeft: "10px",

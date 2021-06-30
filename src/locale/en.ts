@@ -10,8 +10,12 @@ export const translations = {
     type: "Type something...",
   },
   todo: {
+    alert: "We can't fetch your todos :(",
     done: "Done",
     newEntry: "New Entry",
+    description1: "I need my brother to do this.",
+    description2: "It will be easy task.",
+    description3: "Mom forgot about this, so I have to do this.",
   },
   header: {
     title: "awesome todo app",
