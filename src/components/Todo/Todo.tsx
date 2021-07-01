@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import { ITodo } from "src/types";
-
 import { StyleSheet, css } from "aphrodite";
 import { colors, typography } from "src/styles";
 import { i18n } from "src/locale";
@@ -22,20 +21,25 @@ export const Todo: FC<Props> = ({ todo }) => {
       role="menuitem"
       tabIndex={Math.random()}
     >
-      <p className={css(styles.id, typography.altBody1)}>{todo.id}</p>
-      <div className={css(styles.text, typography.altBody1)}>
-        <p>{todo.title}</p>
+      <div className={css(styles.id, typography.altBody1)}>
+        <p>{todo.id}</p>
       </div>
+      <div className={css(styles.text, typography.altBody1)}>
+        <p className={css(styles.taskName)}>{todo.title}</p>
+      </div>
+
+      {todo.status === "done" && (
+        <div className={css(styles.done, typography.altBody1)}>
+          <p>{i18n.t("todo:done")}</p>
+        </div>
+      )}
     </div>
   );
 };
 
 const styles = StyleSheet.create({
   task: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    display: "flex",
+    position: "relative",
     overflow: "hidden",
     transition: "0.5s",
     margin: "5px auto",
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     maxWidth: "90%",
     width: "400px",
-    height: "40px",
+    height: "45px",
     backgroundColor: colors.white,
     cursor: "pointer",
     color: colors.black,
@@ -53,13 +57,36 @@ const styles = StyleSheet.create({
     },
   },
   id: {
-    border: `4px inset ${colors.blue1}`,
-    padding: "0 20px",
-    marginLeft: "10px",
-    width: "1%",
+    position: "absolute",
+    left: "0",
+    display: "block",
+    margin: "0",
+    marginRight: "10px",
+    boxShadow: `-3px 0px 8px 3px ${colors.blue6}`,
+    width: "12%",
+    height: "100%",
+    backgroundColor: colors.blue6,
+    color: colors.white,
   },
   text: {
-    flexGrow: 2,
-    borderRight: `1px solid ${colors.white}`,
+    position: "absolute",
+    left: "12%",
+    width: "70%",
+    lineHeight: "90",
+    textAlign: "center",
+  },
+  taskName: {
+    lineHeight: "1",
+  },
+  done: {
+    position: "absolute",
+    right: "0",
+    marginLeft: "10px",
+    boxShadow: `-3px 0px 8px 3px ${colors.blue6}`,
+    width: "7%",
+    height: "100%",
+    padding: "0 10px",
+    backgroundColor: colors.blue6,
+    color: colors.white,
   },
 });

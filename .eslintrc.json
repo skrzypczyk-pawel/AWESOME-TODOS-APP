@@ -56,7 +56,9 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
     "object-curly-newline": "off",
-    "comma-dangle": ["off", "never"]
+    "comma-dangle": ["off", "never"],
+    "no-extra-boolean-cast": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "react": {
