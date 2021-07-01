@@ -1,8 +1,9 @@
-export interface ITodo {
+export interface BaseTodos {
   id: string;
   title: string;
+}
+export interface ITodo extends BaseTodos {
   category?: Category;
-  completed?: boolean;
   createdAt?: string;
   deadline?: string;
   description?: string;
@@ -13,3 +14,8 @@ export interface ITodo {
 export type Category = "health" | "homework" | "education";
 export type Priority = "low" | "medium" | "high";
 export type Status = "done" | "todo";
+
+export interface RawTodo extends BaseTodos {
+  userId: number;
+  completed: boolean;
+}
