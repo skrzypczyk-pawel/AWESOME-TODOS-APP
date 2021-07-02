@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { colors } from "src/styles";
-
-import { PlusIcon } from "src/assets/icons";
-
 import { i18n } from "src/locale";
+
+import { ListIcon, PlusIcon } from "src/assets/icons";
+import { BaseModal } from "src/Modals/BaseModal";
+import { Button } from "./Button";
 import { HoverButton } from "./HoverButton";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -12,7 +13,12 @@ import { Footer } from "./Footer";
 interface Props {}
 
 export const ScreenWrapper: FC<Props> = ({ children }) => {
-  const handleClick = (): void => {
+  const [displayModal, setDisplayModal] = useState<boolean>(true);
+
+  const handleClickHoverButton = (): void => {
+    setDisplayModal(false);
+  };
+  const handleClickModalButton = (): void => {
     console.log("it works!!!");
   };
 
@@ -20,10 +26,19 @@ export const ScreenWrapper: FC<Props> = ({ children }) => {
     <main className={css(styles.wrapper)}>
       <Header subtitle={i18n.t("header:subtitle")} />
       <HoverButton
-        onClick={handleClick}
+        onClick={handleClickHoverButton}
         icon={<PlusIcon />}
         style={styles.button}
       />
+      <BaseModal show={displayModal} callback={setDisplayModal}>
+        <div>
+          <Button
+            onClick={handleClickModalButton}
+            icon={<ListIcon />}
+            title={i18n.t("modal:add")}
+          />
+        </div>
+      </BaseModal>
       {children}
       <Footer />
     </main>

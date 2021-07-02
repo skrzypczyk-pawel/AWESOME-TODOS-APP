@@ -14,13 +14,7 @@ export const Todo: FC<Props> = ({ todo }) => {
     alert(i18n.t("test:alertTodo"));
   };
   return (
-    <div
-      className={css(styles.task)}
-      onClick={handleClick}
-      onKeyDown={handleClick}
-      role="menuitem"
-      tabIndex={Math.random()}
-    >
+    <div className={css(styles.task)} onClick={handleClick}>
       <div className={css(styles.id, typography.altBody1)}>
         <p>{todo.id}</p>
       </div>

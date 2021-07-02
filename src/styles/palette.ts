@@ -11,6 +11,7 @@ export const colors = {
   red1: "#FF0005",
   red2: "#F56856",
   skin: "#FFDED1",
+  transparentGrey: "rgba(100, 100, 100, 0.3)",
   transparent: "rgba(0, 0, 0, 0)",
   white: "#FFF",
 };
