@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import { colors } from "src/styles";
+import { IconProps } from "src/types";
 
-interface Props {
-  color?: string;
-  size?: number;
-}
-
-export const ListIcon: FC<Props> = ({ color = colors.black, size = 24 }) => {
+export const ListIcon: FC<IconProps> = ({
+  color = colors.black,
+  size = 24,
+}) => {
   return (
     <svg height={`${size}pt`} width={`${size}pt`} viewBox="0 0 438.891 438.891">
       <path
