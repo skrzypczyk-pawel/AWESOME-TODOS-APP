@@ -1,9 +1,7 @@
 import React, { FC, HTMLAttributes } from "react";
-
-import { IconName } from "src/types";
-
 import { css, StyleSheet } from "aphrodite";
 import { colors } from "src/styles";
+import { IconName } from "src/types";
 import { Icon } from "./Icon/Icon";
 
 interface Props {
@@ -12,19 +10,23 @@ interface Props {
   iconStyle?: HTMLAttributes<HTMLButtonElement>;
   style?: HTMLAttributes<HTMLButtonElement>;
   title?: string;
+  isSelected?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
-export const Button: FC<Props> = ({
+export const CircleIconButton: FC<Props> = ({
   onClick,
   iconName,
   iconStyle,
   style,
   title,
+  isSelected,
+  type = "button",
 }) => {
   return (
     <button
-      type="button"
-      className={css(styles.button, style)}
+      type={type}
+      className={css(styles.button, style, isSelected && styles.selected)}
       onClick={onClick}
       title={title}
     >
@@ -37,24 +39,25 @@ export const Button: FC<Props> = ({
 
 const styles = StyleSheet.create({
   button: {
-    position: "absolute",
-    top: "10%",
-    left: "50%",
-    transform: "translateX(-50%)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     transition: "0.5s",
-    border: `2px solid ${colors.blue2}`,
-    borderRadius: "100%",
-    width: 60,
-    height: 60,
-    padding: "3px",
-    backgroundColor: colors.white,
+    position: "absolute",
+    width: 45,
+    height: 45,
     cursor: "pointer",
-    textAlign: "center",
-    ":hover": {
-      backgroundColor: colors.blue2,
-    },
+    borderRadius: "100%",
+    backgroundColor: colors.transparent,
+    ":hover": {},
   },
   icon: {
     margin: 3,
+  },
+  selected: {
+    border: `3px solid ${colors.blue5}`,
+    ":hover": {
+      border: `3px solid ${colors.blue5}`,
+    },
   },
 });

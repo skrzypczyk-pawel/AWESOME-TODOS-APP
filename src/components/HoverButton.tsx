@@ -1,26 +1,35 @@
-import React, { FC, HTMLAttributes, ReactElement } from "react";
-
+import React, { FC, HTMLAttributes } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { i18n } from "src/locale";
-import { colors } from "src/styles";
+import { colors, getShadow } from "src/styles";
+import { IconName } from "src/types";
+import { Icon } from "./Icon/Icon";
 import { StyledText } from "./StyledText";
 
 interface Props {
   onClick: () => void;
-  icon: ReactElement;
+  iconName: IconName;
+  text: string;
   iconStyle?: HTMLAttributes<HTMLButtonElement>;
   style?: HTMLAttributes<HTMLButtonElement>;
 }
 
-export const HoverButton: FC<Props> = ({ onClick, icon, iconStyle, style }) => {
+export const HoverButton: FC<Props> = ({
+  onClick,
+  iconName,
+  iconStyle,
+  style,
+  text,
+}) => {
   return (
     <button
       type="button"
       onClick={onClick}
       className={css(styles.button, style)}
     >
-      <div className={css(styles.icon, iconStyle)}>{icon}</div>
-      <StyledText>{i18n.t("todo:newEntry")}</StyledText>
+      <div className={css(styles.icon, iconStyle)}>
+        <Icon name={iconName} />
+      </div>
+      <StyledText>{text}</StyledText>
     </button>
   );
 };
@@ -33,10 +42,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     transition: "0.5s",
-    boxShadow: `-3px 3px 3px ${colors.blue6}`,
     border: `0px solid ${colors.white}`,
-    width: 50,
-    height: 50,
+    boxShadow: getShadow(colors.blue6, -3, 3, 3),
+    top: 0,
+    right: "-70px",
+    margin: 3,
+    width: 110,
+    height: 40,
     padding: "3px",
     backgroundColor: colors.transparent,
     cursor: "pointer",
@@ -45,7 +57,7 @@ const styles = StyleSheet.create({
     ":hover": {
       opacity: 0.8,
       transform: "translateX(-70px)",
-      boxShadow: `5px -5px 3px ${colors.blue6}`,
+      boxShadow: getShadow(colors.blue6, 0, 0, 4),
       backgroundColor: colors.blue2,
     },
   },

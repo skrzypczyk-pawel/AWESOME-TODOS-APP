@@ -6,3 +6,4 @@ export { ScreenWrapper } from "./ScreenWrapper";
 export { StyledInput } from "./StyledInput";
 export { StyledText } from "./StyledText";
 export { TextArea } from "./TextArea";
+export { Icon } from "./Icon/Icon";
