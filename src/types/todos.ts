@@ -11,7 +11,7 @@ export interface ITodo extends BaseTodos {
   status?: Status;
 }
 
-export type Category = "health" | "homework" | "education";
+export type Category = "health" | "homework" | "education" | "none";
 export type Priority = "low" | "medium" | "high";
 export type Status = "done" | "todo";
 

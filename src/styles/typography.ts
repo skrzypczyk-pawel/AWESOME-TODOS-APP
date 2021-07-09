@@ -16,4 +16,14 @@ export const typography = StyleSheet.create({
     lineHeight: "16px",
     fontFamily: fonts.ubuntu,
   },
+  body2: {
+    fontSize: 20,
+    lineHeight: "24px",
+    fontFamily: fonts.roboto,
+  },
+  altBody2: {
+    fontSize: 20,
+    lineHeight: "24px",
+    fontFamily: fonts.ubuntu,
+  },
 });
