@@ -14,7 +14,7 @@ export const StyledText: FC<Props> = ({ children, error, style }) => {
         typography.body1,
         styles.text,
         style,
-        error && (styles.errorText, typography.altBody1)
+        error && (typography.altBody1, styles.errorText)
       )}
     >
       {children}
