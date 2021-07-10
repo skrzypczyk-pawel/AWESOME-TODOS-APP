@@ -6,24 +6,20 @@ import { CircleIconButton } from "./CircleIconButton";
 
 interface Props {
   visible: boolean;
-  handleCloseModal: () => void;
+  closeModal: () => void;
 }
 
-export const BaseModal: FC<Props> = ({
-  children,
-  visible,
-  handleCloseModal,
-}) => {
+export const BaseModal: FC<Props> = ({ children, visible, closeModal }) => {
   return (
     <div
-      onClick={handleCloseModal}
+      onClick={closeModal}
       className={css(styles.backdrop, !visible && styles.hide)}
     >
       <div className={css(styles.modal)} onClick={(e) => e.stopPropagation()}>
         {children}
         <CircleIconButton
           iconName="close-icon"
-          onClick={handleCloseModal}
+          onClick={closeModal}
           style={styles.closeButton}
         />
       </div>

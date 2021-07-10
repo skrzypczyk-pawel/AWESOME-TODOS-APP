@@ -39,4 +39,9 @@ export const translations = {
     lowImportant: "Not so important",
     howImportant: "How important it is?",
   },
+  validation: {
+    tooShort: "Too Short!",
+    tooLong: "Too Long",
+    requied: "Requied",
+  },
 };

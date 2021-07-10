@@ -3,7 +3,7 @@ import { css, StyleSheet } from "aphrodite";
 import { colors, getShadow } from "src/styles";
 
 interface Props {
-  value: number;
+  value: number | string;
   text: string;
 }
 

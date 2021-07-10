@@ -1,12 +1,12 @@
 export interface BaseTodos {
-  id: string;
+  id: string | number;
   title: string;
 }
 export interface ITodo extends BaseTodos {
   category?: Category;
   createdAt?: string;
   deadline?: string;
-  description?: string;
+  description: string;
   priority?: Priority;
   status?: Status;
 }

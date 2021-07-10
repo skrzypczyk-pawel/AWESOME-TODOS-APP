@@ -2,8 +2,8 @@ import React, { FC, useState } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { colors, getShadow, typography } from "src/styles";
 import { i18n } from "src/locale";
-import { Category, Priority } from "src/types";
-import { Formik } from "formik";
+import { Category, ITodo, Priority } from "src/types";
+import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { CircleIconButton } from "./CircleIconButton";
 import { StyledInput } from "./StyledInput";
@@ -15,13 +15,13 @@ import { StyledText } from "./StyledText";
 
 const AddNewTodoSchema = Yup.object().shape({
   title: Yup.string()
-    .min(3, "Too Short!")
-    .max(30, "Too Long!")
-    .required("Required"),
+    .min(3, i18n.t("validation:tooShort"))
+    .max(30, i18n.t("validation:tooLong"))
+    .required(i18n.t("validation:requied")),
   description: Yup.string()
-    .min(5, "Too Short!")
-    .max(60, "Too Long!")
-    .required("Required"),
+    .min(5, i18n.t("validation:tooShort"))
+    .max(60, i18n.t("validation:tooLong"))
+    .required(i18n.t("validation:requied")),
 });
 
 interface Props {}
@@ -32,42 +32,54 @@ export const AddNewTodoForm: FC<Props> = () => {
   ) as HTMLSelectElement;
   const [category, setCategory] = useState<Category>("none");
   const [priority, setPriority] = useState<Priority>("low");
+
   const getPriority = () => {
     const getImportance = selectedMenu?.value;
     switch (getImportance) {
-      case "1":
+      case "high":
         return setPriority("high");
-      case "2":
+      case "medium":
         return setPriority("medium");
-      case "3":
+      case "low":
         return setPriority("low");
       default:
         return setPriority("low");
     }
   };
 
+  const initialValues: ITodo = {
+    id: Math.floor(Math.random() * 1000) + 1,
+    title: "",
+    status: "todo",
+    priority,
+    category,
+    deadline: "01-01-2034",
+    description: "",
+    createdAt: new Date().toISOString(),
+  };
+
+  const additionalResetForm = () => {
+    setCategory("none");
+    selectedMenu.value = "low";
+  };
+
+  const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {
+    values.category = category;
+    values.priority = priority;
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      actions.setSubmitting(false);
+      actions.resetForm({});
+      additionalResetForm();
+    }, 1000);
+  };
+
   return (
     <>
       <Formik
-        initialValues={{
-          id: Math.floor(Math.random() * 1000) + 1,
-          title: "",
-          status: "todo",
-          priority,
-          category,
-          deadline: "01-01-2034",
-          description: "",
-          createdAt: new Date().toISOString(),
-        }}
+        initialValues={initialValues}
         validationSchema={AddNewTodoSchema}
-        onSubmit={(values, actions) => {
-          values.category = category;
-          values.priority = priority;
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={handleOnSubmit}
       >
         {({ handleSubmit, handleChange, values, errors, touched }) => (
           <form onSubmit={handleSubmit}>
@@ -124,13 +136,16 @@ export const AddNewTodoForm: FC<Props> = () => {
                 />
               </Categories>
               <SelectMenu id="formSelectMenu">
-                <StyledOption value={0} text={i18n.t("modal:howImportant")} />
-                <StyledOption value={1} text={i18n.t("modal:veryImportant")} />
+                <StyledOption value="low" text={i18n.t("modal:howImportant")} />
                 <StyledOption
-                  value={2}
+                  value="high"
+                  text={i18n.t("modal:veryImportant")}
+                />
+                <StyledOption
+                  value="medium"
                   text={i18n.t("modal:mediumImportant")}
                 />
-                <StyledOption value={3} text={i18n.t("modal:lowImportant")} />
+                <StyledOption value="low" text={i18n.t("modal:lowImportant")} />
               </SelectMenu>
             </div>
           </form>

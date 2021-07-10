@@ -31,7 +31,7 @@ export const ScreenWrapper: FC<Props> = ({ children }) => {
           text={i18n.t("todo:history")}
         />
       </HoverButtonsWrap>
-      <BaseModal visible={isVisible} handleCloseModal={closeModal}>
+      <BaseModal visible={isVisible} closeModal={closeModal}>
         <AddNewTodoForm />
       </BaseModal>
       {children}
