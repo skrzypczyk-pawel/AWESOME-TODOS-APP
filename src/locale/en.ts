@@ -26,7 +26,7 @@ export const translations = {
     error: "It doesn't work!!!",
     alertTodo: "You can do it!",
   },
-  modal: {
+  addTodo: {
     add: "Add",
     title: "TITLE...",
     description: "DESCRIPTION...",

@@ -88,14 +88,14 @@ export const AddNewTodoForm: FC<Props> = () => {
                 iconName="list-icon"
                 onClick={getPriority}
                 style={styles.listButton}
-                title={i18n.t("modal:add")}
+                title={i18n.t("addTodo:add")}
                 type="submit"
               />
               <StyledInput
                 name="title"
                 value={values.title}
                 onChange={handleChange}
-                placeholder={i18n.t("modal:title")}
+                placeholder={i18n.t("addTodo:title")}
                 style={styles.input}
                 error={touched.title && errors.title}
               />
@@ -103,49 +103,55 @@ export const AddNewTodoForm: FC<Props> = () => {
                 name="description"
                 value={values.description}
                 onChange={handleChange}
-                placeholder={i18n.t("modal:description")}
+                placeholder={i18n.t("addTodo:description")}
                 style={styles.input}
                 error={touched.description && errors.description}
               />
               <div className={css(styles.text)}>
                 <StyledText style={typography.altBody2}>
-                  {i18n.t("modal:chooseCategory")}
+                  {i18n.t("addTodo:chooseCategory")}
                 </StyledText>
               </div>
               <Categories>
                 <CircleIconButton
                   iconName="education-icon"
                   onClick={() => setCategory("education")}
-                  title={i18n.t("modal:educationCategory")}
+                  title={i18n.t("addTodo:educationCategory")}
                   style={styles.categoryButton}
                   isSelected={category === "education"}
                 />
                 <CircleIconButton
                   iconName="work-icon"
                   onClick={() => setCategory("homework")}
-                  title={i18n.t("modal:workCategory")}
+                  title={i18n.t("addTodo:workCategory")}
                   style={styles.categoryButton}
                   isSelected={category === "homework"}
                 />
                 <CircleIconButton
                   iconName="health-icon"
                   onClick={() => setCategory("health")}
-                  title={i18n.t("modal:healthCategory")}
+                  title={i18n.t("addTodo:healthCategory")}
                   style={styles.categoryButton}
                   isSelected={category === "health"}
                 />
               </Categories>
               <SelectMenu id="formSelectMenu">
-                <StyledOption value="low" text={i18n.t("modal:howImportant")} />
+                <StyledOption
+                  value="low"
+                  text={i18n.t("addTodo:howImportant")}
+                />
                 <StyledOption
                   value="high"
-                  text={i18n.t("modal:veryImportant")}
+                  text={i18n.t("addTodo:veryImportant")}
                 />
                 <StyledOption
                   value="medium"
-                  text={i18n.t("modal:mediumImportant")}
+                  text={i18n.t("addTodo:mediumImportant")}
                 />
-                <StyledOption value="low" text={i18n.t("modal:lowImportant")} />
+                <StyledOption
+                  value="low"
+                  text={i18n.t("addTodo:lowImportant")}
+                />
               </SelectMenu>
             </div>
           </form>
