@@ -1,29 +1,39 @@
 import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
-import { colors } from "src/styles";
-
-import { PlusIcon } from "src/assets/icons";
-
+import { BaseModal } from "src/components/BaseModal";
+import { useModal } from "src/hooks/useModal";
 import { i18n } from "src/locale";
-import { HoverButton } from "./HoverButton";
-import { Header } from "./Header";
+import { colors, getShadow } from "src/styles";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { HoverButton } from "./HoverButton";
+import { HoverButtonsWrap } from "./HoverButtonsWrap";
+import { AddNewTodoForm } from "./AddNewTodoForm";
 
 interface Props {}
 
 export const ScreenWrapper: FC<Props> = ({ children }) => {
-  const handleClick = (): void => {
-    console.log("it works!!!");
-  };
+  const { isVisible, openModal, closeModal } = useModal();
 
   return (
-    <main className={css(styles.wrapper)}>
+    <main id="main" className={css(styles.wrapper)}>
       <Header subtitle={i18n.t("header:subtitle")} />
-      <HoverButton
-        onClick={handleClick}
-        icon={<PlusIcon />}
-        style={styles.button}
-      />
+      <HoverButtonsWrap>
+        <HoverButton
+          onClick={openModal}
+          iconName="plus-icon"
+          text={i18n.t("todo:newEntry")}
+        />
+        <HoverButton
+          onClick={openModal}
+          iconName="list-icon"
+          style={styles.button2}
+          text={i18n.t("todo:history")}
+        />
+      </HoverButtonsWrap>
+      <BaseModal visible={isVisible} closeModal={closeModal}>
+        <AddNewTodoForm />
+      </BaseModal>
       {children}
       <Footer />
     </main>
@@ -32,41 +42,19 @@ export const ScreenWrapper: FC<Props> = ({ children }) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: "relative",
     flexDirection: "column",
     alignItems: "stretch",
     display: "flex",
     overflow: "hidden",
     margin: "0 auto",
-    boxShadow: `0px 0px 15px ${colors.blue4}`,
+    boxShadow: getShadow(colors.blue4, 0, 0, 15),
     width: "60vw",
     minWidth: "400px",
     maxWidth: "800px",
     minHeight: "100vh",
     backgroundColor: colors.white,
   },
-  button: {
-    position: "absolute",
-    top: "30vh",
-    right: "-70px",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    display: "flex",
-    transition: "0.5s",
-    border: `0px solid ${colors.white}`,
-    width: 110,
-    height: 40,
-    padding: "3px",
-    backgroundColor: colors.transparent,
-    cursor: "pointer",
-    textAlign: "center",
-
-    ":hover": {
-      opacity: 0.8,
-      transform: "translateX(-70px)",
-      boxShadow: `0px 0px 4px ${colors.blue6}`,
-      backgroundColor: colors.blue2,
-    },
+  button2: {
+    top: 43,
   },
 });

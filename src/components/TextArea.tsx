@@ -1,14 +1,15 @@
-import React, { FC, HTMLAttributes, useState } from "react";
+import React, { ChangeEventHandler, FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "src/styles/palette";
+import { colors, getShadow } from "src/styles/palette";
 
 import { StyledText } from "./StyledText";
 
 interface Props {
-  onChange: (_value: string) => void;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+  name: string;
   value: string;
-  error?: string;
+  error?: string | boolean;
   focused?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export const TextArea: FC<Props> = ({
+  name,
   error,
   focused = false,
   label,
@@ -45,8 +47,9 @@ export const TextArea: FC<Props> = ({
         {label}
         <textarea
           id={label}
+          name={name}
           onFocus={handleFocus}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={onChange}
           onBlur={handleBlur}
           className={css(
             styles.textarea,
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
   textarea: {
     transition: "0.1s",
     margin: "10px auto",
-    boxShadow: `3px 3px 5px ${colors.blue4}`,
+    boxShadow: getShadow(colors.blue4),
     border: `1px solid ${colors.white}`,
     outline: "none",
     borderRadius: 5,
@@ -76,17 +79,17 @@ const styles = StyleSheet.create({
   },
   focused: {
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.blue6}`,
+      boxShadow: getShadow(colors.blue6),
       backgroundColor: colors.white,
       color: colors.blue1,
     },
   },
   error: {
-    boxShadow: `3px 3px 5px ${colors.red1}`,
+    boxShadow: getShadow(colors.red1),
     border: `1px solid ${colors.red2}`,
     backgroundColor: colors.red2,
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.red1}`,
+      boxShadow: getShadow(colors.red1),
       backgroundColor: colors.skin,
       color: colors.red2,
     },

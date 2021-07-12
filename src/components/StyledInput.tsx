@@ -1,13 +1,14 @@
-import React, { FC, HTMLAttributes, useState } from "react";
+import React, { ChangeEventHandler, FC, HTMLAttributes, useState } from "react";
 
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "src/styles";
+import { colors, getShadow } from "src/styles";
 import { StyledText } from "./StyledText";
 
 interface Props {
-  onChange: (_value: string) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   value: string;
-  error?: string;
+  name?: string;
+  error?: string | boolean;
   focused?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
@@ -21,6 +22,7 @@ export const StyledInput: FC<Props> = ({
   error,
   focused = false,
   label,
+  name,
   onBlur,
   onChange,
   onFocus,
@@ -46,8 +48,9 @@ export const StyledInput: FC<Props> = ({
         {label}
         <input
           id={label}
+          name={name}
           onFocus={handleFocus}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={onChange}
           onBlur={handleBlur}
           type={type}
           className={css(
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
   input: {
     transition: "0.5s",
     margin: 2,
-    boxShadow: `3px 3px 5px ${colors.blue4}`,
+    boxShadow: getShadow(colors.blue4),
     border: `1px solid ${colors.white}`,
     outline: "none",
     borderRadius: 5,
@@ -76,17 +79,17 @@ const styles = StyleSheet.create({
   },
   focused: {
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.blue6}`,
+      boxShadow: getShadow(),
       backgroundColor: colors.blue2,
       color: colors.blue1,
     },
   },
   error: {
-    boxShadow: `3px 3px 5px ${colors.red1}`,
+    boxShadow: getShadow(colors.red1),
     border: `1px solid ${colors.red2}`,
     backgroundColor: colors.red2,
     ":focus": {
-      boxShadow: `3px 3px 5px ${colors.red1}`,
+      boxShadow: getShadow(colors.red1),
       backgroundColor: colors.skin,
       color: colors.red2,
     },

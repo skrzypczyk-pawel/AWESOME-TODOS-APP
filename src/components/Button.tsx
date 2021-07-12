@@ -1,35 +1,36 @@
 import React, { FC, HTMLAttributes } from "react";
-import { css, StyleSheet } from "aphrodite";
-import { colors, getShadow } from "src/styles";
+
 import { IconName } from "src/types";
+
+import { css, StyleSheet } from "aphrodite";
+import { colors } from "src/styles";
 import { Icon } from "./Icon/Icon";
-import { StyledText } from "./StyledText";
 
 interface Props {
   onClick: () => void;
   iconName: IconName;
-  text: string;
   iconStyle?: HTMLAttributes<HTMLButtonElement>;
   style?: HTMLAttributes<HTMLButtonElement>;
+  title?: string;
 }
 
-export const HoverButton: FC<Props> = ({
+export const Button: FC<Props> = ({
   onClick,
   iconName,
   iconStyle,
   style,
-  text,
+  title,
 }) => {
   return (
     <button
       type="button"
-      onClick={onClick}
       className={css(styles.button, style)}
+      onClick={onClick}
+      title={title}
     >
       <div className={css(styles.icon, iconStyle)}>
         <Icon name={iconName} />
       </div>
-      <StyledText>{text}</StyledText>
     </button>
   );
 };
@@ -37,33 +38,23 @@ export const HoverButton: FC<Props> = ({
 const styles = StyleSheet.create({
   button: {
     position: "absolute",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    display: "flex",
+    top: "10%",
+    left: "50%",
+    transform: "translateX(-50%)",
     transition: "0.5s",
-    border: `0px solid ${colors.white}`,
-    boxShadow: getShadow(colors.blue6, -3, 3, 3),
-    top: 0,
-    right: "-70px",
-    margin: 3,
-    width: 110,
-    height: 40,
+    border: `2px solid ${colors.blue2}`,
+    borderRadius: "100%",
+    width: 60,
+    height: 60,
     padding: "3px",
-    backgroundColor: colors.transparent,
+    backgroundColor: colors.white,
     cursor: "pointer",
     textAlign: "center",
-
     ":hover": {
-      opacity: 0.8,
-      transform: "translateX(-70px)",
-      boxShadow: getShadow(colors.blue6, 0, 0, 4),
       backgroundColor: colors.blue2,
     },
   },
   icon: {
     margin: 3,
-    width: "30px",
-    height: "30px",
   },
 });

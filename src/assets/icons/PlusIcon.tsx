@@ -1,12 +1,8 @@
 import React, { FC } from "react";
 import { colors } from "src/styles";
+import { IconProps } from "src/types";
 
-interface Props {
-  color?: string;
-  size?: number;
-}
-
-export const PlusIcon: FC<Props> = ({
+export const PlusIcon: FC<IconProps> = ({
   color = colors.lightBlue,
   size = 18,
 }) => {

@@ -23,8 +23,10 @@ export const TodoList: FC = () => {
       const todosTasks: RawTodo[] = await response.json();
       const updatedTodos: ITodo[] = [];
       todosTasks.forEach((item) => {
-        const updateTodo = fillDummyTodo(item);
-        updatedTodos.push(updateTodo);
+        if (+item.id <= 30) {
+          const updateTodo = fillDummyTodo(item);
+          updatedTodos.push(updateTodo);
+        }
       });
       setTasks(updatedTodos);
     } catch {

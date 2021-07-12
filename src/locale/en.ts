@@ -12,7 +12,8 @@ export const translations = {
   todo: {
     alert: "We can't fetch your todos :(",
     done: "Done",
-    newEntry: "New Entry",
+    newEntry: "New entry",
+    history: "History",
     description1: "I need my brother to do this.",
   },
   header: {
@@ -24,5 +25,23 @@ export const translations = {
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, aspernatur quam quibusdam, suscipit, maxime nisi nobis dolorem iure obcaecati molestiae voluptate qui nam laborum necessitatibus. Voluptas dolorem aperiam atque consequuntur!",
     error: "It doesn't work!!!",
     alertTodo: "You can do it!",
+  },
+  addTodo: {
+    add: "Add",
+    title: "TITLE...",
+    description: "DESCRIPTION...",
+    educationCategory: "Education",
+    workCategory: "Work",
+    healthCategory: "Health",
+    chooseCategory: "Choose one category",
+    veryImportant: "Very important",
+    mediumImportant: "Important",
+    lowImportant: "Not so important",
+    howImportant: "How important it is?",
+  },
+  validation: {
+    tooShort: "Too Short!",
+    tooLong: "Too Long",
+    requied: "Requied",
   },
 };
