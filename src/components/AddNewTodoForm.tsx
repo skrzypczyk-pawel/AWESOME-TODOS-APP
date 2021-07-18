@@ -1,10 +1,12 @@
 import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import { css, StyleSheet } from "aphrodite";
 import { colors, getShadow, typography } from "src/styles";
 import { i18n } from "src/locale";
 import { Category, ITodo, Priority } from "src/types";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
+import { addTodo } from "src/store/todo/actions";
 import { CircleIconButton } from "./CircleIconButton";
 import { StyledInput } from "./StyledInput";
 import { TextArea } from "./TextArea";
@@ -30,8 +32,10 @@ export const AddNewTodoForm: FC<Props> = () => {
   const selectedMenu = document.getElementById(
     "formSelectMenu"
   ) as HTMLSelectElement;
+  const dispatch = useDispatch();
   const [category, setCategory] = useState<Category>("none");
   const [priority, setPriority] = useState<Priority>("low");
+  const [newID, setNewID] = useState<number>(31);
 
   const getPriority = () => {
     const getImportance = selectedMenu?.value;
@@ -48,7 +52,7 @@ export const AddNewTodoForm: FC<Props> = () => {
   };
 
   const initialValues: ITodo = {
-    id: Math.floor(Math.random() * 1000) + 1,
+    id: newID,
     title: "",
     status: "todo",
     priority,
@@ -60,14 +64,19 @@ export const AddNewTodoForm: FC<Props> = () => {
 
   const additionalResetForm = () => {
     setCategory("none");
+    let ID = newID;
+    ID++;
+    setNewID(ID);
     selectedMenu.value = "low";
   };
 
   const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {
     values.category = category;
     values.priority = priority;
+    values.id = newID;
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
+      dispatch(addTodo(values));
       actions.setSubmitting(false);
       actions.resetForm({});
       additionalResetForm();
