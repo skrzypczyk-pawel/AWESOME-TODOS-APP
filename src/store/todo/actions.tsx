@@ -1,16 +1,14 @@
 import {
   ITodo,
   FetchTodoRequest,
-  FetchTodoSuccess,
-  FetchTodoSuccessPayload,
-  FetchTodoFailure,
-  FetchTodoFailurePayload,
+  FetchTodoResolved,
+  FetchTodoRejected,
   AddTodo,
 } from "src/types";
 import {
   FETCH_TODO_REQUEST,
-  FETCH_TODO_FAILURE,
-  FETCH_TODO_SUCCESS,
+  FETCH_TODO_REJECTED,
+  FETCH_TODO_RESOLVED,
   ADD_TODO,
 } from "./actionTypes";
 
@@ -18,17 +16,13 @@ export const fetchTodoRequest = (): FetchTodoRequest => ({
   type: FETCH_TODO_REQUEST,
 });
 
-export const fetchTodoSuccess = (
-  payload: FetchTodoSuccessPayload
-): FetchTodoSuccess => ({
-  type: FETCH_TODO_SUCCESS,
+export const fetchTodoResolved = (payload: ITodo[]): FetchTodoResolved => ({
+  type: FETCH_TODO_RESOLVED,
   payload,
 });
 
-export const fetchTodoFailure = (
-  payload: FetchTodoFailurePayload
-): FetchTodoFailure => ({
-  type: FETCH_TODO_FAILURE,
+export const fetchTodoRejected = (payload: string): FetchTodoRejected => ({
+  type: FETCH_TODO_REJECTED,
   payload,
 });
 

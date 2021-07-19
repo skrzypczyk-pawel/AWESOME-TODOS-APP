@@ -1,20 +1,12 @@
 import {
   FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
+  FETCH_USER_RESOLVED,
+  FETCH_USER_REJECTED,
   ADD_USER,
 } from "src/store/user/actionTypes";
 
 export interface UserState {
   users: IUser[];
-  error: boolean;
-}
-
-export interface FetchUserSuccessPayload {
-  todos: IUser[];
-}
-
-export interface FetchUserFailurePayload {
   error: string;
 }
 
@@ -27,14 +19,14 @@ export interface FetchUserRequest {
   type: typeof FETCH_USER_REQUEST;
 }
 
-export type FetchUserSuccess = {
-  type: typeof FETCH_USER_SUCCESS;
-  payload: FetchUserSuccessPayload;
+export type FetchUserResolved = {
+  type: typeof FETCH_USER_RESOLVED;
+  payload: IUser[];
 };
 
-export type FetchUserFailure = {
-  type: typeof FETCH_USER_FAILURE;
-  payload: FetchUserFailurePayload;
+export type FetchUserRejected = {
+  type: typeof FETCH_USER_REJECTED;
+  payload: string;
 };
 
 export type AddUser = {
@@ -44,6 +36,6 @@ export type AddUser = {
 
 export type UserActions =
   | FetchUserRequest
-  | FetchUserSuccess
-  | FetchUserFailure
+  | FetchUserResolved
+  | FetchUserRejected
   | AddUser;

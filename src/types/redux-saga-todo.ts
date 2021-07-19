@@ -1,7 +1,7 @@
 import {
   FETCH_TODO_REQUEST,
-  FETCH_TODO_SUCCESS,
-  FETCH_TODO_FAILURE,
+  FETCH_TODO_RESOLVED,
+  FETCH_TODO_REJECTED,
   ADD_TODO,
 } from "src/store/todo/actionTypes";
 import { ITodo } from "./todos";
@@ -9,29 +9,20 @@ import { ITodo } from "./todos";
 export interface TodoState {
   loading: boolean;
   todos: ITodo[];
-  error: boolean;
-}
-
-export interface FetchTodoSuccessPayload {
-  todos: ITodo[];
-}
-
-export interface FetchTodoFailurePayload {
   error: string;
 }
-
 export interface FetchTodoRequest {
   type: typeof FETCH_TODO_REQUEST;
 }
 
-export type FetchTodoSuccess = {
-  type: typeof FETCH_TODO_SUCCESS;
-  payload: FetchTodoSuccessPayload;
+export type FetchTodoResolved = {
+  type: typeof FETCH_TODO_RESOLVED;
+  payload: ITodo[];
 };
 
-export type FetchTodoFailure = {
-  type: typeof FETCH_TODO_FAILURE;
-  payload: FetchTodoFailurePayload;
+export type FetchTodoRejected = {
+  type: typeof FETCH_TODO_REJECTED;
+  payload: string;
 };
 
 export type AddTodo = {
@@ -41,6 +32,6 @@ export type AddTodo = {
 
 export type TodoActions =
   | FetchTodoRequest
-  | FetchTodoSuccess
-  | FetchTodoFailure
+  | FetchTodoResolved
+  | FetchTodoRejected
   | AddTodo;

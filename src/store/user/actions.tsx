@@ -1,16 +1,14 @@
 import {
   IUser,
   FetchUserRequest,
-  FetchUserSuccess,
-  FetchUserSuccessPayload,
-  FetchUserFailure,
-  FetchUserFailurePayload,
+  FetchUserResolved,
+  FetchUserRejected,
   AddUser,
 } from "src/types";
 import {
   FETCH_USER_REQUEST,
-  FETCH_USER_FAILURE,
-  FETCH_USER_SUCCESS,
+  FETCH_USER_REJECTED,
+  FETCH_USER_RESOLVED,
   ADD_USER,
 } from "./actionTypes";
 
@@ -18,17 +16,13 @@ export const fetchUserRequest = (): FetchUserRequest => ({
   type: FETCH_USER_REQUEST,
 });
 
-export const fetchUserSuccess = (
-  payload: FetchUserSuccessPayload
-): FetchUserSuccess => ({
-  type: FETCH_USER_SUCCESS,
+export const fetchUserResolved = (payload: IUser[]): FetchUserResolved => ({
+  type: FETCH_USER_RESOLVED,
   payload,
 });
 
-export const fetchUserFailure = (
-  payload: FetchUserFailurePayload
-): FetchUserFailure => ({
-  type: FETCH_USER_FAILURE,
+export const fetchUserRejected = (payload: string): FetchUserRejected => ({
+  type: FETCH_USER_REJECTED,
   payload,
 });
 

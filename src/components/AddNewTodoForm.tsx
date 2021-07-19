@@ -7,6 +7,7 @@ import { Category, ITodo, Priority } from "src/types";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { addTodo } from "src/store/todo/actions";
+import { v4 as uuidv4 } from "uuid";
 import { CircleIconButton } from "./CircleIconButton";
 import { StyledInput } from "./StyledInput";
 import { TextArea } from "./TextArea";
@@ -35,7 +36,6 @@ export const AddNewTodoForm: FC<Props> = () => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState<Category>("none");
   const [priority, setPriority] = useState<Priority>("low");
-  const [newID, setNewID] = useState<number>(31);
 
   const getPriority = () => {
     const getImportance = selectedMenu?.value;
@@ -52,7 +52,7 @@ export const AddNewTodoForm: FC<Props> = () => {
   };
 
   const initialValues: ITodo = {
-    id: newID,
+    id: "",
     title: "",
     status: "todo",
     priority,
@@ -64,16 +64,13 @@ export const AddNewTodoForm: FC<Props> = () => {
 
   const additionalResetForm = () => {
     setCategory("none");
-    let ID = newID;
-    ID++;
-    setNewID(ID);
     selectedMenu.value = "low";
   };
 
   const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {
     values.category = category;
     values.priority = priority;
-    values.id = newID;
+    values.id = uuidv4();
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       dispatch(addTodo(values));

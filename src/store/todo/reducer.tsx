@@ -1,15 +1,15 @@
 import { TodoActions, TodoState } from "src/types";
 import {
   FETCH_TODO_REQUEST,
-  FETCH_TODO_SUCCESS,
-  FETCH_TODO_FAILURE,
+  FETCH_TODO_RESOLVED,
+  FETCH_TODO_REJECTED,
   ADD_TODO,
 } from "./actionTypes";
 
 const initialState: TodoState = {
   loading: false,
   todos: [],
-  error: false,
+  error: "",
 };
 
 export default (state = initialState, action: TodoActions) => {
@@ -18,27 +18,27 @@ export default (state = initialState, action: TodoActions) => {
       return {
         ...state,
         loading: true,
+        error: "",
       };
-    case FETCH_TODO_SUCCESS:
+    case FETCH_TODO_RESOLVED:
       return {
         ...state,
         loading: false,
-        todos: action.payload.todos,
-        error: false,
+        todos: action.payload,
+        error: "",
       };
-    case FETCH_TODO_FAILURE:
+    case FETCH_TODO_REJECTED:
       return {
         ...state,
         loading: false,
-        todos: [],
-        error: false,
+        error: action.payload,
       };
     case ADD_TODO:
-      const newState = state;
-      newState.todos.push(action.payload);
+      const stateCopy = [...state.todos];
+      stateCopy.push(action.payload);
       return {
         ...state,
-        todos: newState.todos,
+        todos: stateCopy,
       };
     default:
       return {

@@ -1,14 +1,14 @@
 import { UserActions, UserState } from "src/types";
 import {
   FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAILURE,
+  FETCH_USER_RESOLVED,
+  FETCH_USER_REJECTED,
   ADD_USER,
 } from "./actionTypes";
 
 const initialState: UserState = {
   users: [],
-  error: false,
+  error: "",
 };
 
 export default (state = initialState, action: UserActions) => {
@@ -16,28 +16,27 @@ export default (state = initialState, action: UserActions) => {
     case FETCH_USER_REQUEST:
       return {
         ...state,
-        pending: true,
+        loading: true,
       };
-    case FETCH_USER_SUCCESS:
+    case FETCH_USER_RESOLVED:
       return {
         ...state,
-        pending: false,
-        todos: action.payload.todos,
-        error: null,
+        loading: false,
+        users: action.payload,
+        error: "",
       };
-    case FETCH_USER_FAILURE:
+    case FETCH_USER_REJECTED:
       return {
         ...state,
-        pending: false,
-        todos: [],
-        error: action.payload.error,
+        loading: false,
+        error: action.payload,
       };
     case ADD_USER:
       const newState = state;
       newState.users.push(action.payload);
       return {
         ...state,
-        todos: newState.users,
+        users: newState.users,
       };
     default:
       return {
