@@ -34,11 +34,10 @@ export default (state = initialState, action: TodoActions) => {
         error: action.payload,
       };
     case ADD_TODO:
-      const stateCopy = [...state.todos];
-      stateCopy.push(action.payload);
+      const updatedTodos = [...state.todos, action.payload];
       return {
         ...state,
-        todos: stateCopy,
+        todos: updatedTodos,
       };
     default:
       return {

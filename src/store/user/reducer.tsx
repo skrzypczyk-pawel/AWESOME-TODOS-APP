@@ -32,11 +32,10 @@ export default (state = initialState, action: UserActions) => {
         error: action.payload,
       };
     case ADD_USER:
-      const newState = state;
-      newState.users.push(action.payload);
+      const updatedUsers = [...state.users, action.payload];
       return {
         ...state,
-        users: newState.users,
+        users: updatedUsers,
       };
     default:
       return {
