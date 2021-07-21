@@ -1,48 +1,30 @@
-import React, { FC, useEffect, useState } from "react";
-
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Todo } from "src/components/Todo/Todo";
 import Loader from "src/components/Loader";
-import { ITodo, RawTodo } from "src/types";
+import { fetchTodoRequest } from "src/store/todo/actions";
 import { i18n } from "src/locale";
-import { fillDummyTodo } from "src/helpers";
+import { AppState } from "src/store/rootReducer";
+import { ITodo } from "src/types";
 
 export const TodoList: FC = () => {
-  const [tasks, setTasks] = useState<ITodo[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
-  const todosDataURL = "https://jsonplaceholder.typicode.com/todos";
+  const { todos, loading, error } = useSelector(
+    (state: AppState) => state.todo
+  );
 
   useEffect(() => {
-    fetchTodos();
+    dispatch(fetchTodoRequest());
   }, []);
-
-  const fetchTodos = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(todosDataURL);
-      const todosTasks: RawTodo[] = await response.json();
-      const updatedTodos: ITodo[] = [];
-      todosTasks.forEach((item) => {
-        if (+item.id <= 30) {
-          const updateTodo = fillDummyTodo(item);
-          updatedTodos.push(updateTodo);
-        }
-      });
-      setTasks(updatedTodos);
-    } catch {
-      alert(i18n.t("todo:alert"));
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       {loading ? (
         <Loader />
       ) : (
-        tasks.map((todo) => <Todo key={todo.id} todo={todo} />)
+        todos.map((todo: ITodo) => <Todo key={todo.id} todo={todo} />)
       )}
+      {error && alert(i18n.t("todo:alert"))}
     </>
   );
 };
