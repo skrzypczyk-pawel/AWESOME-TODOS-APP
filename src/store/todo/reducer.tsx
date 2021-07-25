@@ -48,10 +48,12 @@ export default (state = initialState, action: TodoActions) => {
       };
     case CHANGE_STATUS:
       const updatedTodos = [...state.todos];
-      const index = updatedTodos.findIndex(
+      const updatedTodo = updatedTodos.find(
         (todo) => todo.id === action.payload
       );
-      const updatedTodo = updatedTodos[index];
+      if (!updatedTodo) {
+        return { ...state };
+      }
       updatedTodo.status = updatedTodo.status === "done" ? "todo" : "done";
       return {
         ...state,

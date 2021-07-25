@@ -7,7 +7,7 @@ import { i18n } from "src/locale";
 import { Icon } from "src/components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { changeStatus, deleteTodo } from "src/store/todo/actions";
-import { useNotification } from "src/hooks/useNotification";
+import { useNotification } from "src/hooks";
 import { Button } from "../Button";
 
 interface Props {

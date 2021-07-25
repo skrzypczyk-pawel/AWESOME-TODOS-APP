@@ -5,7 +5,7 @@ import Loader from "src/components/Loader";
 import { fetchTodoRequest } from "src/store/todo/actions";
 import { AppState } from "src/store/rootReducer";
 import { ITodo } from "src/types";
-import { useNotification } from "src/hooks/useNotification";
+import { useNotification } from "src/hooks";
 import { i18n } from "src/locale";
 import { StyledText } from "../StyledText";
 

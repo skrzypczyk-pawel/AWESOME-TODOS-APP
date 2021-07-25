@@ -8,7 +8,7 @@ import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { addTodo } from "src/store/todo/actions";
 import { v4 as uuidv4 } from "uuid";
-import { useNotification } from "src/hooks/useNotification";
+import { useNotification } from "src/hooks";
 import { CircleIconButton } from "./CircleIconButton";
 import { StyledInput } from "./StyledInput";
 import { TextArea } from "./TextArea";
