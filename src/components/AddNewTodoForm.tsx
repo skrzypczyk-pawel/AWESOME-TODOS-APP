@@ -8,6 +8,7 @@ import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { addTodo } from "src/store/todo/actions";
 import { v4 as uuidv4 } from "uuid";
+import { useNotification } from "src/hooks/useNotification";
 import { CircleIconButton } from "./CircleIconButton";
 import { StyledInput } from "./StyledInput";
 import { TextArea } from "./TextArea";
@@ -30,6 +31,8 @@ const AddNewTodoSchema = Yup.object().shape({
 interface Props {}
 
 export const AddNewTodoForm: FC<Props> = () => {
+  const { handleNotification } = useNotification();
+
   const selectedMenu = document.getElementById(
     "formSelectMenu"
   ) as HTMLSelectElement;
@@ -71,13 +74,15 @@ export const AddNewTodoForm: FC<Props> = () => {
     values.category = category;
     values.priority = priority;
     values.id = uuidv4();
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      dispatch(addTodo(values));
-      actions.setSubmitting(false);
-      actions.resetForm({});
-      additionalResetForm();
-    }, 1000);
+
+    dispatch(addTodo(values));
+    handleNotification({
+      text: i18n.t("notification:addText"),
+      title: i18n.t("notification:addTitle"),
+    });
+    actions.setSubmitting(false);
+    actions.resetForm({});
+    additionalResetForm();
   };
 
   return (
