@@ -1,15 +1,13 @@
 import {
+  FETCH_USER_REQUEST,
+  FETCH_USER_REJECTED,
+  FETCH_USER_RESOLVED,
+  ADD_USER,
   IUser,
   FetchUserRequest,
   FetchUserResolved,
   FetchUserRejected,
   AddUser,
-} from "src/types";
-import {
-  FETCH_USER_REQUEST,
-  FETCH_USER_REJECTED,
-  FETCH_USER_RESOLVED,
-  ADD_USER,
 } from "./actionTypes";
 
 export const fetchUserRequest = (): FetchUserRequest => ({

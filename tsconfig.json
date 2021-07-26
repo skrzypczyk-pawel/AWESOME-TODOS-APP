@@ -3,6 +3,7 @@
     "baseUrl": "./",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "typeRoots": ["./src/types"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,

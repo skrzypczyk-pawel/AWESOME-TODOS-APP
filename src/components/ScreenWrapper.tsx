@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { BaseModal } from "src/components/BaseModal";
-import { useModal } from "src/hooks/useModal";
+import { useModal } from "src/hooks";
 import { i18n } from "src/locale";
 import { colors, getShadow } from "src/styles";
 import { Footer } from "./Footer";

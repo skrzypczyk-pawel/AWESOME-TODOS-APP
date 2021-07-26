@@ -1,9 +1,10 @@
-import { UserActions, UserState } from "src/types";
 import {
   FETCH_USER_REQUEST,
   FETCH_USER_RESOLVED,
   FETCH_USER_REJECTED,
   ADD_USER,
+  UserActions,
+  UserState,
 } from "./actionTypes";
 
 const initialState: UserState = {

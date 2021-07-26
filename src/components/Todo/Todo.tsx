@@ -1,18 +1,41 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import { ITodo, IconName } from "src/types";
 import { StyleSheet, css } from "aphrodite";
 import { colors, getShadow, typography } from "src/styles";
 import { i18n } from "src/locale";
 import { Icon } from "src/components/Icon/Icon";
+import { useDispatch } from "react-redux";
+import { changeStatus, deleteTodo } from "src/store/todo/actions";
+import { useNotification } from "src/hooks";
+import { Button } from "../Button";
 
 interface Props {
   todo: ITodo;
 }
 
 export const Todo: FC<Props> = ({ todo }) => {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { handleNotification } = useNotification();
   const handleClick = (): void => {
-    alert(i18n.t("test:alertTodo"));
+    setIsClicked(!isClicked);
+  };
+  const handleDelete = () => {
+    dispatch(deleteTodo(todo.id));
+    handleNotification({
+      type: "warning",
+      title: i18n.t("notification:deleteTitle"),
+      text: i18n.t("notification:deleteText"),
+    });
+  };
+  const handleChangeStatus = () => {
+    dispatch(changeStatus(todo.id));
+    setIsClicked(!isClicked);
+    handleNotification({
+      type: "info",
+      text: i18n.t("notification:changeStatusText"),
+    });
   };
   const setBoltColor = (): string => {
     if (todo.priority === "low") {
@@ -39,23 +62,39 @@ export const Todo: FC<Props> = ({ todo }) => {
   };
 
   return (
-    <div className={css(styles.task)} onClick={handleClick}>
-      <div className={css(styles.id, typography.altBody1)}>
-        <p>{todo.id}</p>
-      </div>
-      <div className={css(styles.text, typography.altBody1)}>
-        <p className={css(styles.taskName)}>{todo.title}</p>
-      </div>
-      <div className={css(styles.category)}>
-        {todo.category && <Icon name={getCategoryIcon()} />}
-      </div>
-      {todo.status === "done" ? (
-        <div className={css(styles.done, typography.altBody1)}>
-          <p>{i18n.t("todo:done")}</p>
+    <div className={css(styles.taskWrap)}>
+      <div className={css(styles.task)} onClick={handleClick}>
+        <div className={css(styles.id, typography.altBody1)}>
+          <p>{todo.id}</p>
         </div>
-      ) : (
-        <div className={css(styles.bolt)}>
-          <Icon name="bolt-icon" color={setBoltColor()} />
+        <div className={css(styles.text, typography.altBody1)}>
+          <p className={css(styles.taskName)}>{todo.title}</p>
+        </div>
+        <div className={css(styles.category)}>
+          {todo.category && <Icon name={getCategoryIcon()} />}
+        </div>
+        {todo.status === "done" ? (
+          <div className={css(styles.done, typography.altBody1)}>
+            <p>{i18n.t("todo:done")}</p>
+          </div>
+        ) : (
+          <div className={css(styles.bolt)}>
+            <Icon name="bolt-icon" color={setBoltColor()} />
+          </div>
+        )}
+      </div>
+      {isClicked && (
+        <div className={css(styles.additionalButtons)}>
+          <Button
+            onClick={handleDelete}
+            iconName="bin-icon"
+            style={styles.button}
+          />
+          <Button
+            onClick={handleChangeStatus}
+            iconName="done-icon"
+            style={styles.button}
+          />
         </div>
       )}
     </div>
@@ -63,11 +102,17 @@ export const Todo: FC<Props> = ({ todo }) => {
 };
 
 const styles = StyleSheet.create({
+  taskWrap: {
+    position: "relative",
+    transition: "0.5s",
+    margin: "5px auto",
+    backgroundColor: colors.white,
+    cursor: "pointer",
+  },
   task: {
     position: "relative",
     overflow: "hidden",
     transition: "0.5s",
-    margin: "5px auto",
     boxShadow: getShadow(colors.blue4),
     border: `1px solid ${colors.white}`,
     borderRadius: 5,
@@ -131,5 +176,34 @@ const styles = StyleSheet.create({
     width: "7%",
     height: "100%",
     padding: "0 10px",
+  },
+  additionalButtons: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    top: 0,
+    right: "-110px",
+    width: "100px",
+    height: "45px",
+  },
+  button: {
+    position: "relative",
+    top: "none",
+    left: "none",
+    transform: "translateX(0)",
+    transition: "0.5s",
+    alignItems: "center",
+    border: `2px solid ${colors.blue2}`,
+    borderRadius: "5px",
+    width: 40,
+    height: 40,
+    padding: "3px",
+    backgroundColor: colors.white,
+    cursor: "pointer",
+    textAlign: "center",
+    ":hover": {
+      backgroundColor: colors.blue2,
+    },
   },
 });

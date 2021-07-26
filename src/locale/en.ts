@@ -15,6 +15,7 @@ export const translations = {
     newEntry: "New entry",
     history: "History",
     description1: "I need my brother to do this.",
+    emptyArray: "Empty array!",
   },
   header: {
     title: "awesome todo app",
@@ -43,5 +44,17 @@ export const translations = {
     tooShort: "Too Short!",
     tooLong: "Too Long",
     requied: "Requied",
+  },
+  notification: {
+    title: "title",
+    deleteTitle: "DELETED",
+    deleteText: "Task has been deleted.",
+    changeStatusText: "Status has been changed",
+    addTitle: "Add new",
+    addText: "Todo has been added",
+    default: "default info notification",
+    resolvedTitle: "Success",
+    resolvedText: "Todos has been fetched",
+    rejectedTitle: "Error!",
   },
 };

@@ -10,4 +10,6 @@ export const iconComponents: Record<IconName, React.FC<IconProps>> = {
   "work-icon": icons.WorkIcon,
   "health-icon": icons.HealthIcon,
   "bolt-icon": icons.BoltIcon,
+  "bin-icon": icons.BinIcon,
+  "done-icon": icons.DoneIcon,
 };
