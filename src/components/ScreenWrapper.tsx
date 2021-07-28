@@ -9,31 +9,41 @@ import { Header } from "./Header";
 import { HoverButton } from "./HoverButton";
 import { HoverButtonsWrap } from "./HoverButtonsWrap";
 import { AddNewTodoForm } from "./AddNewTodoForm";
+import { TodoHistoryListModal } from "./TodoHistoryListModal";
 
 interface Props {}
 
 export const ScreenWrapper: FC<Props> = ({ children }) => {
-  const { isVisible, openModal, closeModal } = useModal();
+  const { isVisible, openModal, closeModal, whichModal } = useModal();
+
+  const handleOpenAddNewTodoModal = () => openModal("AddNewTodoForm");
+  const handleOpenHistoryModal = () => openModal("HistoryModal");
 
   return (
     <main id="main" className={css(styles.wrapper)}>
       <Header subtitle={i18n.t("header:subtitle")} />
       <HoverButtonsWrap>
         <HoverButton
-          onClick={openModal}
+          onClick={handleOpenAddNewTodoModal}
           iconName="plus-icon"
           text={i18n.t("todo:newEntry")}
         />
         <HoverButton
-          onClick={openModal}
+          onClick={handleOpenHistoryModal}
           iconName="list-icon"
           style={styles.button2}
           text={i18n.t("todo:history")}
         />
       </HoverButtonsWrap>
+
       <BaseModal visible={isVisible} closeModal={closeModal}>
-        <AddNewTodoForm />
+        {whichModal === "AddNewTodoForm" ? (
+          <AddNewTodoForm />
+        ) : (
+          <TodoHistoryListModal />
+        )}
       </BaseModal>
+
       {children}
       <Footer />
     </main>

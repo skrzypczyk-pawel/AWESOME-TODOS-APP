@@ -29,7 +29,9 @@ export const TodoList: FC = () => {
       {!todos.length ? (
         <StyledText>{i18n.t("todo:emptyArray")}</StyledText>
       ) : (
-        todos.map((todo: ITodo) => <Todo key={todo.id} todo={todo} />)
+        todos
+          .filter((todo: ITodo) => todo.status === "todo")
+          .map((todo: ITodo) => <Todo key={todo.id} todo={todo} />)
       )}
     </>
   );
