@@ -7,3 +7,5 @@ export { HealthIcon } from "./HealthIcon";
 export { BoltIcon } from "./BoltIcon";
 export { BinIcon } from "./BinIcon";
 export { DoneIcon } from "./DoneIcon";
+export { BackIcon } from "./BackIcon";
+export { TransparentIcon } from "./TransparentIcon";
