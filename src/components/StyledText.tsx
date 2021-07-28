@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginTop: 3,
-    color: colors.red1,
+    color: colors.white,
   },
 });

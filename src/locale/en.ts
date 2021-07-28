@@ -29,8 +29,8 @@ export const translations = {
   },
   addTodo: {
     add: "Add",
-    title: "TITLE...",
-    description: "DESCRIPTION...",
+    title: "Title...",
+    description: "Description...",
     educationCategory: "Education",
     workCategory: "Work",
     healthCategory: "Health",

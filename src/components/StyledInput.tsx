@@ -15,6 +15,7 @@ interface Props {
   label?: string;
   placeholder?: string;
   style?: HTMLAttributes<HTMLInputElement>;
+  styleText?: HTMLAttributes<HTMLInputElement>;
   type?: "submit" | "text" | "number";
 }
 
@@ -28,6 +29,7 @@ export const StyledInput: FC<Props> = ({
   onFocus,
   placeholder,
   style,
+  styleText,
   type = "text",
   value,
 }) => {
@@ -56,6 +58,7 @@ export const StyledInput: FC<Props> = ({
           className={css(
             styles.input,
             style,
+            styleText,
             isFocused && styles.focused,
             !!error && styles.error
           )}
@@ -76,6 +79,7 @@ const styles = StyleSheet.create({
     outline: "none",
     borderRadius: 5,
     backgroundColor: colors.white,
+    color: colors.blue4,
   },
   focused: {
     ":focus": {
@@ -88,6 +92,7 @@ const styles = StyleSheet.create({
     boxShadow: getShadow(colors.red1),
     border: `1px solid ${colors.red2}`,
     backgroundColor: colors.red2,
+    color: colors.red1,
     ":focus": {
       boxShadow: getShadow(colors.red1),
       backgroundColor: colors.skin,
@@ -98,6 +103,6 @@ const styles = StyleSheet.create({
     marginTop: 3,
     fontSize: 12,
     textTransform: "none",
-    color: colors.red1,
+    color: colors.red2,
   },
 });
