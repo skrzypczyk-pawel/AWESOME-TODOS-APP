@@ -16,6 +16,9 @@ export interface Props {}
 
 export const TodoHistoryListModal: FC<Props> = () => {
   const { todos } = useSelector((state: AppState) => state.todo);
+  const historyTodos = todos
+    .filter((todo: ITodo) => todo.status === "done")
+    .map((todo: ITodo) => <HistoryTodo key={todo.id} todo={todo} />);
   return (
     <>
       <div className={css(styles.title)}>
@@ -29,9 +32,7 @@ export const TodoHistoryListModal: FC<Props> = () => {
             {i18n.t("todo:emptyArray")}
           </StyledText>
         ) : (
-          todos
-            .filter((todo: ITodo) => todo.status === "done")
-            .map((todo: ITodo) => <HistoryTodo key={todo.id} todo={todo} />)
+          historyTodos
         )}
       </div>
     </>
