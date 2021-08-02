@@ -1,22 +1,19 @@
 import { useState } from "react";
 
-type ModalName = "AddNewTodoForm" | "HistoryModal";
 interface ModalManager {
   closeModal: () => void;
-  openModal: (name: ModalName) => void;
+  openModal: () => void;
   isVisible: boolean;
-  whichModal: ModalName;
 }
+export type ModalType = "new" | "history" | undefined;
 
 export const useModal = (): ModalManager => {
-  const [whichModal, setWhichModal] = useState<ModalName>("AddNewTodoForm");
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const closeModal = () => {
     setIsVisible(false);
   };
-  const openModal = (name: ModalName) => {
-    setWhichModal(name);
+  const openModal = () => {
     setIsVisible(true);
   };
 
@@ -24,6 +21,5 @@ export const useModal = (): ModalManager => {
     closeModal,
     openModal,
     isVisible,
-    whichModal,
   };
 };

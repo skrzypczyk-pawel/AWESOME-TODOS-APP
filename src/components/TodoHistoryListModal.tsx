@@ -5,32 +5,31 @@ import { AppState } from "src/store/rootReducer";
 
 import { colors, getShadow } from "src/styles";
 import { css, StyleSheet } from "aphrodite";
-import { i18n } from "src/locale";
 
 import { ITodo } from "src/types";
 
+import { useTranslation } from "react-i18next";
 import { StyledText } from "./StyledText";
 import { HistoryTodo } from "./Todo";
 
-export interface Props {}
+interface Props {}
 
 export const TodoHistoryListModal: FC<Props> = () => {
   const { todos } = useSelector((state: AppState) => state.todo);
   const historyTodos = todos
     .filter((todo: ITodo) => todo.status === "done")
     .map((todo: ITodo) => <HistoryTodo key={todo.id} todo={todo} />);
+
+  const { t } = useTranslation("todo");
+
   return (
     <>
       <div className={css(styles.title)}>
-        <StyledText style={styles.titleText}>
-          {i18n.t("todo:history")}
-        </StyledText>
+        <StyledText style={styles.titleText}>{t("history")}</StyledText>
       </div>
       <div className={css(styles.wrapper)}>
-        {!todos.length ? (
-          <StyledText style={styles.warning}>
-            {i18n.t("todo:emptyArray")}
-          </StyledText>
+        {!historyTodos.length ? (
+          <StyledText style={styles.warning}>{t("emptyArray")}</StyledText>
         ) : (
           historyTodos
         )}

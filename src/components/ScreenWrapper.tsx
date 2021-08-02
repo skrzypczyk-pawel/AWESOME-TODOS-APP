@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { BaseModal } from "src/components/BaseModal";
 import { useModal } from "src/hooks";
 import { i18n } from "src/locale";
 import { colors, getShadow } from "src/styles";
+import { ModalType } from "src/hooks/useModal";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { HoverButton } from "./HoverButton";
@@ -14,35 +15,46 @@ import { TodoHistoryListModal } from "./TodoHistoryListModal";
 interface Props {}
 
 export const ScreenWrapper: FC<Props> = ({ children }) => {
-  const { isVisible, openModal, closeModal, whichModal } = useModal();
+  const { isVisible, openModal, closeModal } = useModal();
+  const [modalType, setModalType] = useState<ModalType>(undefined);
 
-  const handleOpenAddNewTodoModal = () => openModal("AddNewTodoForm");
-  const handleOpenHistoryModal = () => openModal("HistoryModal");
+  const handleOpenModal = (type: ModalType): void => {
+    setModalType(type);
+    openModal();
+  };
+
+  const handleCloseModal = (): void => {
+    setModalType(undefined);
+    closeModal();
+  };
+
+  const modal = useMemo(
+    () => (!!modalType ? (
+      <BaseModal visible={isVisible} closeModal={handleCloseModal}>
+        {modalType === "new" ? <AddNewTodoForm /> : <TodoHistoryListModal />}
+      </BaseModal>
+    ) : null),
+    [modalType]
+  );
 
   return (
     <main id="main" className={css(styles.wrapper)}>
       <Header subtitle={i18n.t("header:subtitle")} />
       <HoverButtonsWrap>
         <HoverButton
-          onClick={handleOpenAddNewTodoModal}
+          onClick={() => handleOpenModal("new")}
           iconName="plus-icon"
           text={i18n.t("todo:newEntry")}
         />
         <HoverButton
-          onClick={handleOpenHistoryModal}
+          onClick={() => handleOpenModal("history")}
           iconName="list-icon"
           style={styles.button2}
           text={i18n.t("todo:history")}
         />
       </HoverButtonsWrap>
 
-      <BaseModal visible={isVisible} closeModal={closeModal}>
-        {whichModal === "AddNewTodoForm" ? (
-          <AddNewTodoForm />
-        ) : (
-          <TodoHistoryListModal />
-        )}
-      </BaseModal>
+      {modal}
 
       {children}
       <Footer />

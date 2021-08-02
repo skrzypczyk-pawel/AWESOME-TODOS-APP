@@ -6,7 +6,7 @@ import { fetchTodoRequest } from "src/store/todo/actions";
 import { AppState } from "src/store/rootReducer";
 import { ITodo } from "src/types";
 import { useNotification } from "src/hooks";
-import { i18n } from "src/locale";
+import { useTranslation } from "react-i18next";
 import { StyledText } from "../StyledText";
 
 export const TodoList: FC = () => {
@@ -15,6 +15,8 @@ export const TodoList: FC = () => {
   const { todos, loading } = useSelector((state: AppState) => state.todo);
 
   const { handleNotification } = useNotification();
+
+  const { t } = useTranslation("todo");
 
   useEffect(() => {
     dispatch(fetchTodoRequest(handleNotification));
@@ -27,7 +29,7 @@ export const TodoList: FC = () => {
   return (
     <>
       {!todos.length ? (
-        <StyledText>{i18n.t("todo:emptyArray")}</StyledText>
+        <StyledText>{t("emptyArray")}</StyledText>
       ) : (
         todos
           .filter((todo: ITodo) => todo.status === "todo")
