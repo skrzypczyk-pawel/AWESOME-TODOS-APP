@@ -4,8 +4,6 @@ import { TodoList, ScreenWrapper, StyledText } from "src/components";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
 import { i18n } from "src/locale";
-import { FinderBar } from "src/components/FinderBar";
-import { CategoryFilter } from "src/components/CategoryFilter";
 
 interface Props {}
 
@@ -13,9 +11,6 @@ const HomeScreen: FC<Props> = () => {
   return (
     <ScreenWrapper>
       <div className={css(styles.homeScreen)}>
-        <FinderBar>
-          <CategoryFilter />
-        </FinderBar>
         <h3>{i18n.t("header:title")}</h3>
         <StyledText style={styles.testText}>{i18n.t("test:lorem")}</StyledText>
         <TodoList />

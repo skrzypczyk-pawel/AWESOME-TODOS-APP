@@ -1,5 +1,5 @@
 import { Notification } from "src/hooks/useNotification";
-import { Category, ITodo } from "src/types";
+import { ITodo } from "src/types";
 import {
   FETCH_TODO_REQUEST,
   FETCH_TODO_REJECTED,
@@ -13,8 +13,6 @@ import {
   AddTodo,
   DeleteTodo,
   ChangeStatus,
-  FilterForCategoryTodo,
-  FILTER_FOR_CATEGORY_TODO,
 } from "./actionTypes";
 
 export const fetchTodoRequest = (
@@ -42,13 +40,6 @@ export const addTodo = (todo: ITodo): AddTodo => ({
 export const deleteTodo = (id: string | number): DeleteTodo => ({
   type: DELETE_TODO,
   payload: id,
-});
-
-export const filterForCategoryTodo = (
-  category: Category
-): FilterForCategoryTodo => ({
-  type: FILTER_FOR_CATEGORY_TODO,
-  payload: category,
 });
 
 export const changeStatus = (id: string | number): ChangeStatus => ({
