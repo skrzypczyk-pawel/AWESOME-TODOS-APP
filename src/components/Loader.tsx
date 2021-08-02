@@ -10,7 +10,7 @@ export interface Props {
   style?: HTMLAttributes<HTMLDivElement>;
 }
 
-const Loader: FC<Props> = ({ color = colors.lightBlue, size = 30, style }) => {
+export const Loader: FC<Props> = ({ color = colors.lightBlue, size = 30, style }) => {
   return (
     <div className={css(styles.loader, style)}>
       <PulseSpinner size={size} color={color} />
@@ -23,5 +23,3 @@ const styles = StyleSheet.create({
     margin: "10px auto",
   },
 });
-
-export default Loader;
