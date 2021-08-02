@@ -8,12 +8,12 @@ export const HoverButtonsWrap: FC<Props> = ({ children }) => {
   const [distance, setDistance] = useState<number>(0);
   /** Measure distance between page body and window.  */
   const measureDistanceWrapperWindow = () => {
-    const element = document.getElementById("main") as HTMLElement;
+    // const element = document.getElementById("main") as HTMLElement;
     if (distance === 0) {
-      const xPosition: number = element.offsetLeft;
+      const xPosition = 0;
       setDistance(xPosition);
     } else {
-      const xPosition: number = element.offsetLeft;
+      const xPosition = 0;
       setDistance(xPosition);
     }
   };
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     transition: "0.5s",
     position: "fixed",
-    top: "25vh",
+    top: "30vh",
     width: 50,
     height: 90,
     cursor: "pointer",
