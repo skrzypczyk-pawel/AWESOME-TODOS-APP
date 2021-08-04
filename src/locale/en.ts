@@ -12,20 +12,14 @@ export const translations = {
   todo: {
     alert: "We can't fetch your todos :(",
     done: "Done",
-    newEntry: "New entry",
-    history: "History",
-    description1: "I need my brother to do this.",
     emptyArray: "Empty array!",
+    history: "History",
+    taskToDo: "Tasks to do",
+    newEntry: "New entry",
   },
   header: {
     title: "awesome todo app",
     subtitle: "- main list",
-  },
-  test: {
-    lorem:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, aspernatur quam quibusdam, suscipit, maxime nisi nobis dolorem iure obcaecati molestiae voluptate qui nam laborum necessitatibus. Voluptas dolorem aperiam atque consequuntur!",
-    error: "It doesn't work!!!",
-    alertTodo: "You can do it!",
   },
   addTodo: {
     add: "Add",
@@ -56,5 +50,7 @@ export const translations = {
     resolvedTitle: "Success",
     resolvedText: "Todos has been fetched",
     rejectedTitle: "Error!",
+    filterByCategory: "Category has been chosen",
+    filterDisabled: "Filter was disabled",
   },
 };
