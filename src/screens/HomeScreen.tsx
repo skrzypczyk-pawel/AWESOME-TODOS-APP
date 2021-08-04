@@ -4,8 +4,8 @@ import { TodoList, ScreenWrapper } from "src/components";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
 import { i18n } from "src/locale";
-import { CategoryFilter } from "src/components/CategoryFilter";
 import { FinderBar } from "src/components/FinderBar";
+import { CategoryFilter } from "src/components/CategoryFilter";
 
 interface Props {}
 
