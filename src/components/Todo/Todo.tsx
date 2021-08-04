@@ -1,18 +1,14 @@
 import React, { FC, useState } from "react";
-/* eslint-disable */
 
-//
-// remove this disable before merge
-//
-
-import { ITodo, IconName } from "src/types";
+import { ITodo } from "src/types";
 import { StyleSheet, css } from "aphrodite";
 import { colors, getShadow, typography } from "src/styles";
-import { i18n } from "src/locale";
 import { Icon } from "src/components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { changeStatus, deleteTodo } from "src/store/todo/actions";
 import { useNotification } from "src/hooks";
+import { setBoltColor, getCategoryIcon } from "src/helpers";
+import { useTranslation } from "react-i18next";
 import { Button } from "../Button";
 
 interface Props {
@@ -20,6 +16,7 @@ interface Props {
 }
 
 export const Todo: FC<Props> = ({ todo }) => {
+  const { t } = useTranslation("notification");
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { handleNotification } = useNotification();
@@ -35,8 +32,8 @@ export const Todo: FC<Props> = ({ todo }) => {
     dispatch(deleteTodo(id));
     handleNotification({
       type: "warning",
-      title: i18n.t("notification:deleteTitle"),
-      text: i18n.t("notification:deleteText"),
+      title: t("deleteTitle"),
+      text: t("deleteText"),
     });
   };
 
@@ -45,36 +42,8 @@ export const Todo: FC<Props> = ({ todo }) => {
     setIsClicked(!isClicked);
     handleNotification({
       type: "info",
-      text: i18n.t("notification:changeStatusText"),
+      text: t("changeStatusText"),
     });
-  };
-
-  // remove to src/helpers/todos.ts
-  const setBoltColor = (): string => {
-    switch (priority) {
-      case "low":
-        return colors.green2;
-      case "high":
-        return colors.red1;
-      case "medium":
-      default:
-        return colors.yellow;
-    }
-  };
-
-  // remove to src/helpers/todos.ts
-  const getCategoryIcon = (): IconName => {
-    switch (category) {
-      case "homework":
-        return "work-icon";
-      case "education":
-        return "education-icon";
-      case "health":
-        return "health-icon";
-      case "none":
-      default:
-        return "transparent-icon";
-    }
   };
 
   const sharedButtons = (
@@ -96,11 +65,11 @@ export const Todo: FC<Props> = ({ todo }) => {
     <>
       {category && (
         <div className={css(styles.category)}>
-          <Icon name={getCategoryIcon()} />
+          <Icon name={getCategoryIcon(category)} />
         </div>
       )}
       <div className={css(styles.bolt)}>
-        <Icon name="bolt-icon" color={setBoltColor()} />
+        <Icon name="bolt-icon" color={setBoltColor(priority)} />
       </div>
     </>
   ) : (
@@ -109,8 +78,17 @@ export const Todo: FC<Props> = ({ todo }) => {
 
   return (
     <div className={css(styles.taskWrap)}>
-      <div className={css(styles.task)} onClick={handleClick}>
-        <div className={css(styles.id, typography.altBody1)}>
+      <div
+        className={css(styles.task, isDone && styles.doneTask)}
+        onClick={handleClick}
+      >
+        <div
+          className={css(
+            styles.id,
+            isDone && styles.doneId,
+            typography.altBody1
+          )}
+        >
           <p>{id}</p>
         </div>
         <div className={css(styles.text, typography.altBody1)}>
@@ -149,6 +127,9 @@ const styles = StyleSheet.create({
       backgroundColor: colors.blue6,
     },
   },
+  doneTask: {
+    width: "300x",
+  },
   id: {
     position: "absolute",
     left: "0",
@@ -160,6 +141,10 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: colors.blue6,
     color: colors.white,
+  },
+  doneId: {
+    paddingLeft: "15px",
+    width: "8%",
   },
   text: {
     position: "absolute",

@@ -13,8 +13,8 @@ export const StyledText: FC<Props> = ({ children, error, style }) => {
       className={css(
         typography.body1,
         styles.text,
-        style,
-        error && (typography.altBody1, styles.errorText)
+        error && (typography.altBody1, styles.errorText),
+        style
       )}
     >
       {children}

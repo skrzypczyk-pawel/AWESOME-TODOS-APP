@@ -1,25 +1,21 @@
 import React, { FC, useMemo, useState } from "react";
-/* eslint-disable */
 
-//
-// remove this disable before merge
-//
 import { css, StyleSheet } from "aphrodite";
 import { BaseModal } from "src/components/BaseModal";
 import { useModal } from "src/hooks";
 import { i18n } from "src/locale";
 import { colors, getShadow } from "src/styles";
 import { ModalType } from "src/hooks/useModal";
+import { ITodo } from "src/types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { HoverButton } from "./HoverButton";
 import { HoverButtonsWrap } from "./HoverButtonsWrap";
 import { AddNewTodoForm } from "./AddNewTodoForm";
-import { ITodo } from "src/types";
 import { TodoList } from "./Todo";
 
 interface Props {
-  doneTodos: ITodo[]
+  doneTodos: ITodo[];
 }
 
 export const ScreenWrapper: FC<Props> = ({ children, doneTodos }) => {
@@ -37,12 +33,17 @@ export const ScreenWrapper: FC<Props> = ({ children, doneTodos }) => {
   };
 
   const modal = useMemo(
-    () =>
-      !!modalType ? (
-        <BaseModal visible={isVisible} closeModal={handleCloseModal}>
-          {modalType === "new" ? <AddNewTodoForm /> : <TodoList list={doneTodos} />}
-        </BaseModal>
-      ) : null,
+    () => (!!modalType ? (
+      <BaseModal visible={isVisible} closeModal={handleCloseModal}>
+        {modalType === "new" ? (
+          <AddNewTodoForm />
+        ) : (
+          <div className={css(styles.list)}>
+            <TodoList list={doneTodos} />
+          </div>
+        )}
+      </BaseModal>
+    ) : null),
     [modalType]
   );
 
@@ -84,6 +85,15 @@ const styles = StyleSheet.create({
     maxWidth: "800px",
     minHeight: "100vh",
     backgroundColor: colors.white,
+  },
+  list: {
+    overflowX: "hidden",
+    borderColor: colors.white,
+    borderWidth: "3px 0px 3px 3px",
+    borderStyle: "solid",
+    borderRadius: "10px 0px 0px 10px",
+    height: "80%",
+    width: "94%",
   },
   button2: {
     top: 43,

@@ -12,7 +12,7 @@ export interface ITodo extends BaseTodos {
 }
 
 export type Category = "health" | "homework" | "education" | "none";
-export type Priority = "low" | "medium" | "high";
+export type Priority = "low" | "medium" | "high" | undefined;
 export type Status = "done" | "todo";
 
 export interface RawTodo extends BaseTodos {

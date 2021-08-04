@@ -57,4 +57,8 @@ export const translations = {
     resolvedText: "Todos has been fetched",
     rejectedTitle: "Error!",
   },
+  error: {
+    error: "Error: ",
+    wentWrong: "Something went wrong...",
+  },
 };
