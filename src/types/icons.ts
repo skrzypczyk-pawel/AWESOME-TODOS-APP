@@ -7,7 +7,9 @@ export type IconName =
   | "health-icon"
   | "bolt-icon"
   | "bin-icon"
-  | "done-icon";
+  | "done-icon"
+  | "back-icon"
+  | "transparent-icon";
 
 export interface IconProps {
   color?: string;

@@ -3,7 +3,7 @@ import { colors } from "src/styles";
 import { IconProps } from "src/types";
 
 export const CloseIcon: FC<IconProps> = ({
-  color = colors.blue1,
+  color = colors.blue2,
   size = 24,
 }) => {
   return (

@@ -39,7 +39,6 @@ export const TodoList: FC = () => {
   if (loading) {
     return <Loader />;
   }
-
   return (
     <>
       {!todos.length ? (

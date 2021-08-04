@@ -12,4 +12,6 @@ export const iconComponents: Record<IconName, React.FC<IconProps>> = {
   "bolt-icon": icons.BoltIcon,
   "bin-icon": icons.BinIcon,
   "done-icon": icons.DoneIcon,
+  "back-icon": icons.BackIcon,
+  "transparent-icon": icons.TransparentIcon,
 };

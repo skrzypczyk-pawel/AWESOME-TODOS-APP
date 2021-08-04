@@ -55,9 +55,9 @@ export const Todo: FC<Props> = ({ todo }) => {
       case "health":
         return "health-icon";
       case "none":
-        return "list-icon";
+        return "transparent-icon";
       default:
-        return "list-icon";
+        return "transparent-icon";
     }
   };
 

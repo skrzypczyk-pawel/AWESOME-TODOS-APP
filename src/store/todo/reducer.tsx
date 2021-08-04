@@ -7,12 +7,14 @@ import {
   TodoState,
   DELETE_TODO,
   CHANGE_STATUS,
+  FILTER_FOR_CATEGORY_TODO,
 } from "./actionTypes";
 
 const initialState: TodoState = {
   loading: false,
   todos: [],
   error: "",
+  categoryFilter: "none",
 };
 
 export default (state = initialState, action: TodoActions) => {
@@ -45,6 +47,11 @@ export default (state = initialState, action: TodoActions) => {
       return {
         ...state,
         todos: [...state.todos].filter((task) => task.id !== action.payload),
+      };
+    case FILTER_FOR_CATEGORY_TODO:
+      return {
+        ...state,
+        categoryFilter: action.payload,
       };
     case CHANGE_STATUS:
       const updatedTodos = [...state.todos];
