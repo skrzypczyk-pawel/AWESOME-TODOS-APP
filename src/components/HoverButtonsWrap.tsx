@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     transition: "0.5s",
     position: "fixed",
-    top: "25vh",
+    top: "30vh",
     width: 50,
     height: 90,
     cursor: "pointer",
