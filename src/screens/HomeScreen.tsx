@@ -1,25 +1,36 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { TodoList, ScreenWrapper, Loader } from "src/components";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "src/store/rootReducer";
-import { ITodo } from "src/types";
+import { Category, ITodo } from "src/types";
 import { useNotification } from "src/hooks";
 import { fetchTodoRequest } from "src/store/todo/actions";
 import { ErrorBox } from "src/components/ErrorBox";
+import { FinderBar } from "src/components/FinderBar";
+import { CategoryFilter } from "src/components/CategoryFilter";
 
 interface Props {}
 
 const HomeScreen: FC<Props> = () => {
+  const [filter, setFilter] = useState<Category>("none");
+
   const { error, loading, todos } = useSelector(
     (state: AppState) => state.todo
   );
-  const activeTodos = todos.filter((todo: ITodo) => todo.status === "todo");
+
   const doneTodos = todos.filter((todo: ITodo) => todo.status === "done");
-  const dispatch = useDispatch();
+
+  const activeTodos = todos.filter((todo: ITodo) => todo.status === "todo");
+
+  const activeFilterTodos = activeTodos.filter(
+    (todo: ITodo) => todo.category === filter
+  );
 
   const { handleNotification } = useNotification();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTodoRequest(handleNotification));
@@ -28,12 +39,17 @@ const HomeScreen: FC<Props> = () => {
   return (
     <ScreenWrapper doneTodos={doneTodos}>
       <div className={css(styles.homeScreen)}>
+        <FinderBar>
+          <CategoryFilter activeCategory={filter} handleFilter={setFilter} />
+        </FinderBar>
         {error ? (
           <ErrorBox error={error} />
         ) : loading ? (
           <Loader />
-        ) : (
+        ) : filter === "none" ? (
           <TodoList list={activeTodos} />
+        ) : (
+          <TodoList list={activeFilterTodos} />
         )}
       </div>
     </ScreenWrapper>
