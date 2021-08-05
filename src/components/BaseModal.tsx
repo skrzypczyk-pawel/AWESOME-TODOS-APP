@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     top: "15vh",
     right: "35vw",
     bottom: "15vh",
-    backgroundColor: colors.white,
+    backgroundColor: colors.blue5,
     boxShadow: getShadow(colors.transparent, 0, 0, 30),
     borderRadius: "15px",
     display: "flex",

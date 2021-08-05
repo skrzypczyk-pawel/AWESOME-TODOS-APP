@@ -1,39 +1,71 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState } from "react";
+
 import { css, StyleSheet } from "aphrodite";
 import { BaseModal } from "src/components/BaseModal";
 import { useModal } from "src/hooks";
 import { i18n } from "src/locale";
 import { colors, getShadow } from "src/styles";
+import { ModalType } from "src/hooks/useModal";
+import { ITodo } from "src/types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { HoverButton } from "./HoverButton";
 import { HoverButtonsWrap } from "./HoverButtonsWrap";
 import { AddNewTodoForm } from "./AddNewTodoForm";
+import { TodoList } from "./Todo";
 
-interface Props {}
+interface Props {
+  doneTodos: ITodo[];
+}
 
-export const ScreenWrapper: FC<Props> = ({ children }) => {
+export const ScreenWrapper: FC<Props> = ({ children, doneTodos }) => {
   const { isVisible, openModal, closeModal } = useModal();
+  const [modalType, setModalType] = useState<ModalType>(undefined);
+
+  const handleOpenModal = (type: ModalType): void => {
+    setModalType(type);
+    openModal();
+  };
+
+  const handleCloseModal = (): void => {
+    setModalType(undefined);
+    closeModal();
+  };
+
+  const modal = useMemo(
+    () => (!!modalType ? (
+      <BaseModal visible={isVisible} closeModal={handleCloseModal}>
+        {modalType === "new" ? (
+          <AddNewTodoForm />
+        ) : (
+          <div className={css(styles.list)}>
+            <TodoList list={doneTodos} />
+          </div>
+        )}
+      </BaseModal>
+    ) : null),
+    [modalType]
+  );
 
   return (
     <main id="main" className={css(styles.wrapper)}>
       <Header subtitle={i18n.t("header:subtitle")} />
       <HoverButtonsWrap>
         <HoverButton
-          onClick={openModal}
+          onClick={() => handleOpenModal("new")}
           iconName="plus-icon"
           text={i18n.t("todo:newEntry")}
         />
         <HoverButton
-          onClick={openModal}
+          onClick={() => handleOpenModal("history")}
           iconName="list-icon"
           style={styles.button2}
           text={i18n.t("todo:history")}
         />
       </HoverButtonsWrap>
-      <BaseModal visible={isVisible} closeModal={closeModal}>
-        <AddNewTodoForm />
-      </BaseModal>
+
+      {modal}
+
       {children}
       <Footer />
     </main>
@@ -53,6 +85,15 @@ const styles = StyleSheet.create({
     maxWidth: "800px",
     minHeight: "100vh",
     backgroundColor: colors.white,
+  },
+  list: {
+    overflowX: "hidden",
+    borderColor: colors.white,
+    borderWidth: "3px 0px 3px 3px",
+    borderStyle: "solid",
+    borderRadius: "10px 0px 0px 10px",
+    height: "80%",
+    width: "94%",
   },
   button2: {
     top: 43,

@@ -1,13 +1,14 @@
 import React, { FC, useState } from "react";
 
-import { ITodo, IconName } from "src/types";
+import { ITodo } from "src/types";
 import { StyleSheet, css } from "aphrodite";
 import { colors, getShadow, typography } from "src/styles";
-import { i18n } from "src/locale";
 import { Icon } from "src/components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { changeStatus, deleteTodo } from "src/store/todo/actions";
 import { useNotification } from "src/hooks";
+import { setBoltColor, getCategoryIcon } from "src/helpers";
+import { useTranslation } from "react-i18next";
 import { Button } from "../Button";
 
 interface Props {
@@ -15,87 +16,88 @@ interface Props {
 }
 
 export const Todo: FC<Props> = ({ todo }) => {
+  const { t } = useTranslation("notification");
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { handleNotification } = useNotification();
+
+  const { id, title, category, priority, status } = todo;
+  const isDone = status === "done";
+
   const handleClick = (): void => {
     setIsClicked(!isClicked);
   };
+
   const handleDelete = () => {
-    dispatch(deleteTodo(todo.id));
+    dispatch(deleteTodo(id));
     handleNotification({
       type: "warning",
-      title: i18n.t("notification:deleteTitle"),
-      text: i18n.t("notification:deleteText"),
+      title: t("deleteTitle"),
+      text: t("deleteText"),
     });
   };
+
   const handleChangeStatus = () => {
-    dispatch(changeStatus(todo.id));
+    dispatch(changeStatus(id));
     setIsClicked(!isClicked);
     handleNotification({
       type: "info",
-      text: i18n.t("notification:changeStatusText"),
+      text: t("changeStatusText"),
     });
   };
-  const setBoltColor = (): string => {
-    if (todo.priority === "low") {
-      return colors.green2;
-    }
-    if (todo.priority === "high") {
-      return colors.red1;
-    }
-    return colors.yellow;
-  };
-  const getCategoryIcon = (): IconName => {
-    switch (todo.category) {
-      case "homework":
-        return "work-icon";
-      case "education":
-        return "education-icon";
-      case "health":
-        return "health-icon";
-      case "none":
-        return "list-icon";
-      default:
-        return "list-icon";
-    }
-  };
+
+  const sharedButtons = (
+    <>
+      <Button
+        onClick={handleDelete}
+        iconName="bin-icon"
+        style={styles.button}
+      />
+      <Button
+        onClick={handleChangeStatus}
+        iconName={!isDone ? "done-icon" : "back-icon"}
+        style={styles.button}
+      />
+    </>
+  );
+
+  const buttonSection = !isDone ? (
+    <>
+      {category && (
+        <div className={css(styles.category)}>
+          <Icon name={getCategoryIcon(category)} />
+        </div>
+      )}
+      <div className={css(styles.bolt)}>
+        <Icon name="bolt-icon" color={setBoltColor(priority)} />
+      </div>
+    </>
+  ) : (
+    <div className={css(styles.doneButtons)}>{sharedButtons}</div>
+  );
 
   return (
     <div className={css(styles.taskWrap)}>
-      <div className={css(styles.task)} onClick={handleClick}>
-        <div className={css(styles.id, typography.altBody1)}>
-          <p>{todo.id}</p>
+      <div
+        className={css(styles.task, isDone && styles.doneTask)}
+        onClick={handleClick}
+      >
+        <div
+          className={css(
+            styles.id,
+            isDone && styles.doneId,
+            typography.altBody1
+          )}
+        >
+          <p>{id}</p>
         </div>
         <div className={css(styles.text, typography.altBody1)}>
-          <p className={css(styles.taskName)}>{todo.title}</p>
+          <p className={css(styles.taskName)}>{title}</p>
         </div>
-        <div className={css(styles.category)}>
-          {todo.category && <Icon name={getCategoryIcon()} />}
-        </div>
-        {todo.status === "done" ? (
-          <div className={css(styles.done, typography.altBody1)}>
-            <p>{i18n.t("todo:done")}</p>
-          </div>
-        ) : (
-          <div className={css(styles.bolt)}>
-            <Icon name="bolt-icon" color={setBoltColor()} />
-          </div>
-        )}
+        {buttonSection}
       </div>
-      {isClicked && (
-        <div className={css(styles.additionalButtons)}>
-          <Button
-            onClick={handleDelete}
-            iconName="bin-icon"
-            style={styles.button}
-          />
-          <Button
-            onClick={handleChangeStatus}
-            iconName="done-icon"
-            style={styles.button}
-          />
-        </div>
+      {isClicked && !isDone && (
+        <div className={css(styles.additionalButtons)}>{sharedButtons}</div>
       )}
     </div>
   );
@@ -125,6 +127,9 @@ const styles = StyleSheet.create({
       backgroundColor: colors.blue6,
     },
   },
+  doneTask: {
+    width: "300x",
+  },
   id: {
     position: "absolute",
     left: "0",
@@ -136,6 +141,10 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: colors.blue6,
     color: colors.white,
+  },
+  doneId: {
+    paddingLeft: "15px",
+    width: "8%",
   },
   text: {
     position: "absolute",
@@ -205,5 +214,9 @@ const styles = StyleSheet.create({
     ":hover": {
       backgroundColor: colors.blue2,
     },
+  },
+  doneButtons: {
+    position: "absolute",
+    right: 0,
   },
 });

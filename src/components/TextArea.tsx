@@ -16,6 +16,7 @@ interface Props {
   label?: string;
   placeholder?: string;
   style?: HTMLAttributes<HTMLInputElement>;
+  styleText?: HTMLAttributes<HTMLInputElement>;
 }
 
 export const TextArea: FC<Props> = ({
@@ -28,6 +29,7 @@ export const TextArea: FC<Props> = ({
   onFocus,
   placeholder,
   style,
+  styleText,
   value,
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(focused);
@@ -54,6 +56,7 @@ export const TextArea: FC<Props> = ({
           className={css(
             styles.textarea,
             style,
+            styleText,
             isFocused && styles.focused,
             !!error && styles.error
           )}
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     minHeight: "10vh",
     backgroundColor: colors.white,
-    color: colors.black,
+    color: colors.blue3,
   },
   focused: {
     ":focus": {
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
     boxShadow: getShadow(colors.red1),
     border: `1px solid ${colors.red2}`,
     backgroundColor: colors.red2,
+    color: colors.red1,
     ":focus": {
       boxShadow: getShadow(colors.red1),
       backgroundColor: colors.skin,

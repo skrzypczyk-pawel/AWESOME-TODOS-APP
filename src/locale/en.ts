@@ -29,8 +29,8 @@ export const translations = {
   },
   addTodo: {
     add: "Add",
-    title: "TITLE...",
-    description: "DESCRIPTION...",
+    title: "Title...",
+    description: "Description...",
     educationCategory: "Education",
     workCategory: "Work",
     healthCategory: "Health",
@@ -56,5 +56,9 @@ export const translations = {
     resolvedTitle: "Success",
     resolvedText: "Todos has been fetched",
     rejectedTitle: "Error!",
+  },
+  error: {
+    error: `Error: {{error}}`,
+    wentWrong: "Something went wrong...",
   },
 };

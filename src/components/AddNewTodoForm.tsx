@@ -96,7 +96,9 @@ export const AddNewTodoForm: FC<Props> = () => {
           <form onSubmit={handleSubmit}>
             <div className={css(styles.form)}>
               <CircleIconButton
-                iconName="list-icon"
+                iconName="done-icon"
+                iconSize={26}
+                iconColor={colors.blue2}
                 onClick={getPriority}
                 style={styles.listButton}
                 title={i18n.t("addTodo:add")}
@@ -108,6 +110,7 @@ export const AddNewTodoForm: FC<Props> = () => {
                 onChange={handleChange}
                 placeholder={i18n.t("addTodo:title")}
                 style={styles.input}
+                styleText={typography.altBody2}
                 error={touched.title && errors.title}
               />
               <TextArea
@@ -116,6 +119,7 @@ export const AddNewTodoForm: FC<Props> = () => {
                 onChange={handleChange}
                 placeholder={i18n.t("addTodo:description")}
                 style={styles.input}
+                styleText={typography.altBody2}
                 error={touched.description && errors.description}
               />
               <div className={css(styles.text)}>
@@ -177,10 +181,10 @@ const styles = StyleSheet.create({
     zIndex: 102,
     position: "fixed",
     left: "35vw",
-    top: "15vh",
+    top: "12vh",
     right: "35vw",
     bottom: "15vh",
-    backgroundColor: colors.white,
+    backgroundColor: colors.blue5,
     boxShadow: getShadow(colors.transparent, 0, 0, 30),
     borderRadius: "15px",
     display: "flex",
@@ -202,12 +206,13 @@ const styles = StyleSheet.create({
     borderRadius: "100%",
     backgroundColor: colors.transparent,
     ":hover": {
-      backgroundColor: colors.blue2,
+      backgroundColor: colors.blue6,
     },
   },
   input: {
     transition: "0.5s",
-    margin: 2,
+    margin: "10px 2px 2px",
+    paddingLeft: "10px",
     boxShadow: getShadow(colors.blue4),
     border: `1px solid ${colors.white}`,
     width: "20vw",
@@ -215,11 +220,12 @@ const styles = StyleSheet.create({
     lineHeight: "5vh",
     fontSize: "3vh",
     outline: "none",
-    borderRadius: 5,
+    borderRadius: 4,
     backgroundColor: colors.white,
   },
   text: {
     margin: 0,
+    color: colors.blue4,
   },
   categoryButton: {
     flexBasis: "100%",
@@ -231,7 +237,8 @@ const styles = StyleSheet.create({
     border: `3px solid ${colors.transparent}`,
     borderRadius: "10%",
     ":hover": {
-      border: `3px solid ${colors.blue2}`,
+      borderBottom: `3px solid ${colors.blue2}`,
+      backgroundColor: colors.blue2,
     },
   },
 });

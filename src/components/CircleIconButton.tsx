@@ -12,6 +12,8 @@ interface Props {
   title?: string;
   isSelected?: boolean;
   type?: "button" | "submit" | "reset";
+  iconSize?: number;
+  iconColor?: string;
 }
 
 export const CircleIconButton: FC<Props> = ({
@@ -22,6 +24,8 @@ export const CircleIconButton: FC<Props> = ({
   title,
   isSelected,
   type = "button",
+  iconSize,
+  iconColor,
 }) => {
   return (
     <button
@@ -31,7 +35,7 @@ export const CircleIconButton: FC<Props> = ({
       title={title}
     >
       <div className={css(styles.icon, iconStyle)}>
-        <Icon name={iconName} />
+        <Icon name={iconName} size={iconSize} color={iconColor} />
       </div>
     </button>
   );
@@ -55,9 +59,9 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   selected: {
-    border: `3px solid ${colors.blue5}`,
+    border: `3px solid ${colors.blue2}`,
     ":hover": {
-      border: `3px solid ${colors.blue5}`,
+      border: `3px solid ${colors.blue3}`,
     },
   },
 });

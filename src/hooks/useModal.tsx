@@ -5,6 +5,7 @@ interface ModalManager {
   openModal: () => void;
   isVisible: boolean;
 }
+export type ModalType = "new" | "history" | undefined;
 
 export const useModal = (): ModalManager => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -15,6 +16,7 @@ export const useModal = (): ModalManager => {
   const openModal = () => {
     setIsVisible(true);
   };
+
   return {
     closeModal,
     openModal,
