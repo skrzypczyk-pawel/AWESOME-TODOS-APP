@@ -7,7 +7,7 @@ import { Icon } from "./Icon/Icon";
 export type IconButtonsNames = "education" | "homework" | "health";
 interface Props {
   onClick: () => void;
-  iconName: IconName | `${IconButtonsNames}-icon`;
+  iconName: IconName;
   iconStyle?: HTMLAttributes<HTMLButtonElement>;
   style?: HTMLAttributes<HTMLButtonElement>;
   title?: string;

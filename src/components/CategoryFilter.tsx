@@ -16,21 +16,17 @@ export const CategoryFilter: FC<Props> = ({ handleFilter, activeCategory }) => {
   const { handleNotification } = useNotification();
 
   const handleClick = (_filter: Category) => {
-    console.log(_filter);
     handleFilter(_filter);
-    if (_filter === activeCategory) {
-      handleFilter("none");
-      handleNotification({
-        text: i18n.t("notification:filterDisabled"),
-        type: "info",
-      });
-    } else if (_filter !== "none") {
-      handleFilter(_filter);
-      handleNotification({
-        text: i18n.t("notification:filterByCategory"),
-        type: "info",
-      });
-    }
+    const isTheSameCategory = _filter === activeCategory;
+    handleFilter(isTheSameCategory ? "none" : _filter);
+    handleNotification({
+      text: i18n.t(
+        isTheSameCategory
+          ? "notification:filterDisabled"
+          : "notification:filterByCategory"
+      ),
+      type: "info",
+    });
   };
 
   const filterConfig: IconButtonsNames[] = ["education", "homework", "health"];
