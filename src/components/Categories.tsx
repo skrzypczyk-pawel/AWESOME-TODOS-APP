@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     margin: "0 auto",
     padding: 5,
-    width: "15vw",
+    width: "120px",
     minHeight: "8vh",
     backgroundColor: colors.transparent,
   },

@@ -3,7 +3,7 @@ export type IconName =
   | "list-icon"
   | "plus-icon"
   | "education-icon"
-  | "work-icon"
+  | "homework-icon"
   | "health-icon"
   | "bolt-icon"
   | "bin-icon"

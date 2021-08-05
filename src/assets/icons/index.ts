@@ -2,7 +2,7 @@ export { PlusIcon } from "./PlusIcon";
 export { ListIcon } from "./ListIcon";
 export { CloseIcon } from "./CloseIcon";
 export { EducationIcon } from "./EducationIcon";
-export { WorkIcon } from "./WorkIcon";
+export { HomeworkIcon } from "./HomeworkIcon";
 export { HealthIcon } from "./HealthIcon";
 export { BoltIcon } from "./BoltIcon";
 export { BinIcon } from "./BinIcon";
