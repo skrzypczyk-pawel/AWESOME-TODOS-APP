@@ -58,7 +58,7 @@ export const translations = {
     rejectedTitle: "Error!",
   },
   error: {
-    error: "Error: ",
+    error: `Error: {{error}}`,
     wentWrong: "Something went wrong...",
   },
 };

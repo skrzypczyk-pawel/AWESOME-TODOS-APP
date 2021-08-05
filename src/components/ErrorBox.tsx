@@ -15,9 +15,8 @@ export const ErrorBox: FC<Props> = ({ error }) => {
     <div className={css(styles.wrap)}>
       <div>
         <StyledText style={styles.text}>{t("wentWrong")}</StyledText>
-        <StyledText error style={styles.text}>
-          {t("error")}
-          {error}
+        <StyledText style={styles.text}>
+          {t("error:error", { error })}
         </StyledText>
       </div>
       <img className={css(styles.image)} src={errorImage} alt="Logo" />
