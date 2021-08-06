@@ -32,7 +32,7 @@ export const translations = {
     title: "Title...",
     description: "Description...",
     educationCategory: "Education",
-    workCategory: "Work",
+    homeworkCategory: "Work",
     healthCategory: "Health",
     chooseCategory: "Choose one category",
     veryImportant: "Very important",

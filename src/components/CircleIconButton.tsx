@@ -4,6 +4,7 @@ import { colors } from "src/styles";
 import { IconName } from "src/types";
 import { Icon } from "./Icon/Icon";
 
+export type IconButtonsNames = "education" | "homework" | "health";
 interface Props {
   onClick: () => void;
   iconName: IconName;

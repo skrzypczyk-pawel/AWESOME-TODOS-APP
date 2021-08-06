@@ -16,7 +16,7 @@ export const setBoltColor = (priority: Priority): string => {
 export const getCategoryIcon = (category: Category): IconName => {
   switch (category) {
     case "homework":
-      return "work-icon";
+      return "homework-icon";
     case "education":
       return "education-icon";
     case "health":

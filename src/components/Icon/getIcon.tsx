@@ -7,7 +7,7 @@ export const iconComponents: Record<IconName, React.FC<IconProps>> = {
   "list-icon": icons.ListIcon,
   "plus-icon": icons.PlusIcon,
   "education-icon": icons.EducationIcon,
-  "work-icon": icons.WorkIcon,
+  "homework-icon": icons.HomeworkIcon,
   "health-icon": icons.HealthIcon,
   "bolt-icon": icons.BoltIcon,
   "bin-icon": icons.BinIcon,

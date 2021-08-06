@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IconProps } from "src/types";
 
-export const WorkIcon: FC<IconProps> = ({ size = 42 }) => {
+export const HomeworkIcon: FC<IconProps> = ({ size = 42 }) => {
   return (
     <svg height={size} viewBox="0 0 512 512" width={size}>
       <path

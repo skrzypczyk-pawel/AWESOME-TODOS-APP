@@ -136,7 +136,7 @@ export const AddNewTodoForm: FC<Props> = () => {
                   isSelected={category === "education"}
                 />
                 <CircleIconButton
-                  iconName="work-icon"
+                  iconName="homework-icon"
                   onClick={() => setCategory("homework")}
                   title={i18n.t("addTodo:workCategory")}
                   style={styles.categoryButton}
