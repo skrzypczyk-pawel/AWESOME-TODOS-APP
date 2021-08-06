@@ -16,7 +16,6 @@ export const CategoryFilter: FC<Props> = ({ handleFilter, activeCategory }) => {
   const { handleNotification } = useNotification();
 
   const handleClick = (_filter: Category) => {
-    handleFilter(_filter);
     const isTheSameCategory = _filter === activeCategory;
     handleFilter(isTheSameCategory ? "none" : _filter);
     handleNotification({

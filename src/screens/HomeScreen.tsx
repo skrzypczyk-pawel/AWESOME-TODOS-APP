@@ -44,7 +44,7 @@ const HomeScreen: FC<Props> = () => {
         <FinderBar>
           <CategoryFilter activeCategory={filter} handleFilter={setFilter} />
         </FinderBar>
-        {error && <ErrorBox error={error} />}
+        {!!error && <ErrorBox error={error} />}
         {loading ? <Loader /> : <TodoList list={activeTodos} />}
       </div>
     </ScreenWrapper>
