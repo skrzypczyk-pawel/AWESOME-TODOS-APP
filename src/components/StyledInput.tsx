@@ -6,7 +6,7 @@ import { StyledText } from "./StyledText";
 
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement>;
-  value: string;
+  value?: string;
   name?: string;
   error?: string | boolean;
   focused?: boolean;

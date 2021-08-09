@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FC,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { TodoList, ScreenWrapper, Loader } from "src/components";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
@@ -10,11 +16,14 @@ import { fetchTodoRequest } from "src/store/todo/actions";
 import { ErrorBox } from "src/components/ErrorBox";
 import { FinderBar } from "src/components/FinderBar";
 import { CategoryFilter } from "src/components/CategoryFilter";
+import { SearchBar } from "src/components/SearchBar";
+import debounce from "lodash.debounce";
 
 interface Props {}
 
 const HomeScreen: FC<Props> = () => {
   const [filter, setFilter] = useState<Category>("none");
+  const [searchedText, setSearchedText] = useState<string>("");
 
   const { error, loading, todos } = useSelector(
     (state: AppState) => state.todo
@@ -23,12 +32,23 @@ const HomeScreen: FC<Props> = () => {
   const doneTodos = todos.filter((todo: ITodo) => todo.status === "done");
 
   const activeTodos = useMemo(() => {
-    const aTodos = todos.filter((todo: ITodo) => todo.status === "todo");
+    const aTodos = todos
+      .filter((todo: ITodo) => todo.status === "todo")
+      .filter((todo: ITodo) => todo.title.toLowerCase().includes(searchedText.toLowerCase()));
+
     if (filter === "none") {
       return aTodos;
     }
     return aTodos.filter((todo: ITodo) => todo.category === filter);
-  }, [todos, filter]);
+  }, [todos, filter, searchedText]);
+
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearchedText(event.target.value);
+  };
+
+  const debouncedChangeHandler = useMemo(() => {
+    return debounce(changeHandler, 300);
+  }, []);
 
   const { handleNotification } = useNotification();
 
@@ -42,6 +62,7 @@ const HomeScreen: FC<Props> = () => {
     <ScreenWrapper doneTodos={doneTodos}>
       <div className={css(styles.homeScreen)}>
         <FinderBar>
+          <SearchBar onChange={debouncedChangeHandler} />
           <CategoryFilter activeCategory={filter} handleFilter={setFilter} />
         </FinderBar>
         {!!error && <ErrorBox error={error} />}
