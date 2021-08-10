@@ -70,9 +70,7 @@ export const AddNewTodoForm: FC<Props> = ({ onSubmit }) => {
   const additionalResetForm = () => {
     setCategory("none");
     selectedMenu.value = "low";
-    if (onSubmit) {
-      onSubmit();
-    }
+    onSubmit?.();
   };
 
   const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {

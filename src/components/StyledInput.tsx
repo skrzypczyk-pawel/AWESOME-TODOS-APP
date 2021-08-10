@@ -1,4 +1,10 @@
-import React, { ChangeEventHandler, FC, HTMLAttributes, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FC,
+  HTMLAttributes,
+  RefObject,
+  useState,
+} from "react";
 
 import { StyleSheet, css } from "aphrodite";
 import { colors, getShadow } from "src/styles";
@@ -7,6 +13,7 @@ import { StyledText } from "./StyledText";
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement>;
   id?: string;
+  reference?: RefObject<HTMLInputElement>;
   value?: string;
   name?: string;
   error?: string | boolean;
@@ -22,6 +29,7 @@ interface Props {
 
 export const StyledInput: FC<Props> = ({
   id,
+  reference,
   error,
   focused = false,
   label,
@@ -52,6 +60,7 @@ export const StyledInput: FC<Props> = ({
         {label}
         <input
           id={id}
+          ref={reference}
           name={name}
           onFocus={handleFocus}
           onChange={onChange}

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC } from "react";
+import React, { ChangeEventHandler, FC, RefObject } from "react";
 import { StyleSheet } from "aphrodite";
 import { i18n } from "src/locale";
 import { colors, getShadow, typography } from "src/styles";
@@ -7,13 +7,15 @@ import { StyledInput } from "./StyledInput";
 
 interface Props {
   id?: string;
+  reference?: RefObject<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const SearchBar: FC<Props> = ({ id, onChange }) => {
+export const SearchBar: FC<Props> = ({ id, reference, onChange }) => {
   return (
     <StyledInput
       id={id}
+      reference={reference}
       onChange={onChange}
       placeholder={i18n.t("textAreaPlaceholder:search")}
       style={styles.input}
