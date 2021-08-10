@@ -6,6 +6,7 @@ import { StyledText } from "./StyledText";
 
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement>;
+  id?: string;
   value?: string;
   name?: string;
   error?: string | boolean;
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export const StyledInput: FC<Props> = ({
+  id,
   error,
   focused = false,
   label,
@@ -49,7 +51,7 @@ export const StyledInput: FC<Props> = ({
       <label htmlFor={label}>
         {label}
         <input
-          id={label}
+          id={id}
           name={name}
           onFocus={handleFocus}
           onChange={onChange}

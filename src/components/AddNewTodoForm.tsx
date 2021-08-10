@@ -29,10 +29,10 @@ const AddNewTodoSchema = Yup.object().shape({
 });
 
 interface Props {
-  closeAfterAdd: () => void;
+  onSubmit?: () => void;
 }
 
-export const AddNewTodoForm: FC<Props> = ({ closeAfterAdd }) => {
+export const AddNewTodoForm: FC<Props> = ({ onSubmit }) => {
   const { handleNotification } = useNotification();
 
   const selectedMenu = document.getElementById(
@@ -70,7 +70,9 @@ export const AddNewTodoForm: FC<Props> = ({ closeAfterAdd }) => {
   const additionalResetForm = () => {
     setCategory("none");
     selectedMenu.value = "low";
-    closeAfterAdd();
+    if (onSubmit) {
+      onSubmit();
+    }
   };
 
   const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {

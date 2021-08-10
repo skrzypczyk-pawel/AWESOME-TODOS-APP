@@ -6,28 +6,27 @@ import { colors, getShadow, typography } from "src/styles";
 import { StyledInput } from "./StyledInput";
 
 interface Props {
+  id?: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const SearchBar: FC<Props> = ({ onChange }) => {
+export const SearchBar: FC<Props> = ({ id, onChange }) => {
   return (
-    <>
-      <StyledInput
-        onChange={onChange}
-        placeholder={i18n.t("textAreaPlaceholder:search")}
-        style={styles.input}
-        styleText={typography.altBody2}
-      />
-    </>
+    <StyledInput
+      id={id}
+      onChange={onChange}
+      placeholder={i18n.t("textAreaPlaceholder:search")}
+      style={styles.input}
+      styleText={typography.altBody2}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
     position: "relative",
-    left: "-90px",
     transition: "0.5s",
-    margin: "10px 2px 2px",
+    marginRight: "10px",
     paddingLeft: "10px",
     boxShadow: getShadow(colors.blue4),
     border: `1px solid ${colors.white}`,
