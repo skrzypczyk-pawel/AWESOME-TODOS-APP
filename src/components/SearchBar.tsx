@@ -7,15 +7,15 @@ import { StyledInput } from "./StyledInput";
 
 interface Props {
   id?: string;
-  reference?: RefObject<HTMLInputElement>;
+  forwardedRef?: RefObject<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const SearchBar: FC<Props> = ({ id, reference, onChange }) => {
+export const SearchBar: FC<Props> = ({ id, forwardedRef, onChange }) => {
   return (
     <StyledInput
       id={id}
-      reference={reference}
+      ref={forwardedRef}
       onChange={onChange}
       placeholder={i18n.t("textAreaPlaceholder:search")}
       style={styles.input}

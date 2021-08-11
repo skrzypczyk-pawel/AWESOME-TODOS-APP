@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useMemo,
   useState,
-  useRef,
 } from "react";
 import { TodoList, ScreenWrapper, Loader } from "src/components";
 import { StyleSheet, css } from "aphrodite";
@@ -49,12 +48,14 @@ const HomeScreen: FC<Props> = () => {
   const changeHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchedText(event.target.value);
   };
-  const searchTodosBarRef = useRef<HTMLInputElement>(null);
+
+  const InputRef = React.createRef<HTMLInputElement>();
 
   const clearSearchBar = () => {
     setSearchedText("");
-    if (!!searchTodosBarRef.current) {
-      searchTodosBarRef.current.value = "";
+
+    if (!!InputRef.current) {
+      InputRef.current.value = "";
     }
   };
 
@@ -71,7 +72,7 @@ const HomeScreen: FC<Props> = () => {
       <div className={css(styles.homeScreen)}>
         <FinderBar>
           <SearchBar
-            reference={searchTodosBarRef}
+            forwardedRef={InputRef}
             onChange={debounce(changeHandler, 300)}
           />
           <CircleIconButton

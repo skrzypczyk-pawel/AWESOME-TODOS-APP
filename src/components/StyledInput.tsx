@@ -1,9 +1,8 @@
 import React, {
   ChangeEventHandler,
-  FC,
   HTMLAttributes,
-  RefObject,
   useState,
+  forwardRef,
 } from "react";
 
 import { StyleSheet, css } from "aphrodite";
@@ -13,7 +12,6 @@ import { StyledText } from "./StyledText";
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement>;
   id?: string;
-  reference?: RefObject<HTMLInputElement>;
   value?: string;
   name?: string;
   error?: string | boolean;
@@ -27,60 +25,64 @@ interface Props {
   type?: "submit" | "text" | "number";
 }
 
-export const StyledInput: FC<Props> = ({
-  id,
-  reference,
-  error,
-  focused = false,
-  label,
-  name,
-  onBlur,
-  onChange,
-  onFocus,
-  placeholder,
-  style,
-  styleText,
-  type = "text",
-  value,
-}) => {
-  const [isFocused, setIsFocused] = useState<boolean>(focused);
+export const StyledInput = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      id,
+      error,
+      focused = false,
+      label,
+      name,
+      onBlur,
+      onChange,
+      onFocus,
+      placeholder,
+      style,
+      styleText,
+      type = "text",
+      value,
+    },
+    ref
+  ) => {
+    const [isFocused, setIsFocused] = useState<boolean>(focused);
 
-  const handleFocus = () => {
-    setIsFocused(true);
-    onFocus?.();
-  };
-  const handleBlur = () => {
-    setIsFocused(false);
-    onBlur?.();
-  };
+    const handleFocus = () => {
+      setIsFocused(true);
+      onFocus?.();
+    };
+    const handleBlur = () => {
+      setIsFocused(false);
+      onBlur?.();
+    };
 
-  return (
-    <>
-      <label htmlFor={label}>
-        {label}
-        <input
-          id={id}
-          ref={reference}
-          name={name}
-          onFocus={handleFocus}
-          onChange={onChange}
-          onBlur={handleBlur}
-          type={type}
-          className={css(
-            styles.input,
-            style,
-            styleText,
-            isFocused && styles.focused,
-            !!error && styles.error
-          )}
-          placeholder={placeholder}
-          value={value}
-        />
-      </label>
-      {!!error && <StyledText error>{error}</StyledText>}
-    </>
-  );
-};
+    return (
+      <>
+        <label htmlFor={label}>
+          {label}
+          <input
+            id={id}
+            ref={ref}
+            name={name}
+            onFocus={handleFocus}
+            onChange={onChange}
+            onBlur={handleBlur}
+            type={type}
+            className={css(
+              styles.input,
+              style,
+              styleText,
+              isFocused && styles.focused,
+              !!error && styles.error
+            )}
+            placeholder={placeholder}
+            value={value}
+          />
+        </label>
+        {!!error && <StyledText error>{error}</StyledText>}
+      </>
+    );
+  }
+);
 const styles = StyleSheet.create({
   input: {
     transition: "0.5s",
