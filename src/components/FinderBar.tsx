@@ -10,6 +10,9 @@ export const FinderBar: FC<Props> = ({ children }) => {
 
 const styles = StyleSheet.create({
   bar: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     position: "relative",
     backgroundColor: colors.blue3,
     width: "100%",

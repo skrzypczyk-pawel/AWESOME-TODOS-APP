@@ -36,7 +36,7 @@ export const ScreenWrapper: FC<Props> = ({ children, doneTodos }) => {
     () => (!!modalType ? (
       <BaseModal visible={isVisible} closeModal={handleCloseModal}>
         {modalType === "new" ? (
-          <AddNewTodoForm />
+          <AddNewTodoForm onSubmit={handleCloseModal} />
         ) : (
           <div className={css(styles.list)}>
             <TodoList list={doneTodos} />
@@ -44,7 +44,7 @@ export const ScreenWrapper: FC<Props> = ({ children, doneTodos }) => {
         )}
       </BaseModal>
     ) : null),
-    [modalType]
+    [modalType, doneTodos]
   );
 
   return (

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { colors } from "src/styles";
 import { i18n } from "src/locale";
@@ -10,9 +10,14 @@ import { CircleIconButton, IconButtonsNames } from "./CircleIconButton";
 interface Props {
   handleFilter: (filter: Category) => void;
   activeCategory: Category;
+  style?: HTMLAttributes<HTMLDivElement>;
 }
 
-export const CategoryFilter: FC<Props> = ({ handleFilter, activeCategory }) => {
+export const CategoryFilter: FC<Props> = ({
+  handleFilter,
+  activeCategory,
+  style,
+}) => {
   const { handleNotification } = useNotification();
 
   const handleClick = (_filter: Category) => {
@@ -31,7 +36,7 @@ export const CategoryFilter: FC<Props> = ({ handleFilter, activeCategory }) => {
   const filterConfig: IconButtonsNames[] = ["education", "homework", "health"];
 
   return (
-    <div className={css(styles.wrap)}>
+    <div className={css(styles.wrap, style)}>
       <Categories>
         {filterConfig.map((filter) => (
           <CircleIconButton

@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FC,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { TodoList, ScreenWrapper, Loader } from "src/components";
 import { StyleSheet, css } from "aphrodite";
 import { colors } from "src/styles";
@@ -10,11 +16,15 @@ import { fetchTodoRequest } from "src/store/todo/actions";
 import { ErrorBox } from "src/components/ErrorBox";
 import { FinderBar } from "src/components/FinderBar";
 import { CategoryFilter } from "src/components/CategoryFilter";
+import { SearchBar } from "src/components/SearchBar";
+import debounce from "lodash.debounce";
+import { CircleIconButton } from "src/components/CircleIconButton";
 
 interface Props {}
 
 const HomeScreen: FC<Props> = () => {
   const [filter, setFilter] = useState<Category>("none");
+  const [searchedText, setSearchedText] = useState<string>("");
 
   const { error, loading, todos } = useSelector(
     (state: AppState) => state.todo
@@ -23,12 +33,31 @@ const HomeScreen: FC<Props> = () => {
   const doneTodos = todos.filter((todo: ITodo) => todo.status === "done");
 
   const activeTodos = useMemo(() => {
-    const aTodos = todos.filter((todo: ITodo) => todo.status === "todo");
+    const activeFilteredTodos = todos
+      .filter((todo: ITodo) => todo.status === "todo")
+      .filter((todo: ITodo) => todo.title.toLowerCase().includes(searchedText.toLowerCase()));
+
     if (filter === "none") {
-      return aTodos;
+      return activeFilteredTodos;
     }
-    return aTodos.filter((todo: ITodo) => todo.category === filter);
-  }, [todos, filter]);
+    return activeFilteredTodos.filter(
+      (todo: ITodo) => todo.category === filter
+    );
+  }, [todos, filter, searchedText]);
+
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearchedText(event.target.value);
+  };
+
+  const InputRef = React.createRef<HTMLInputElement>();
+
+  const clearSearchBar = () => {
+    setSearchedText("");
+
+    if (!!InputRef.current) {
+      InputRef.current.value = "";
+    }
+  };
 
   const { handleNotification } = useNotification();
 
@@ -42,7 +71,20 @@ const HomeScreen: FC<Props> = () => {
     <ScreenWrapper doneTodos={doneTodos}>
       <div className={css(styles.homeScreen)}>
         <FinderBar>
-          <CategoryFilter activeCategory={filter} handleFilter={setFilter} />
+          <SearchBar
+            forwardedRef={InputRef}
+            onChange={debounce(changeHandler, 300)}
+          />
+          <CircleIconButton
+            iconName="close-icon"
+            onClick={clearSearchBar}
+            style={styles.clearButton}
+          />
+          <CategoryFilter
+            activeCategory={filter}
+            handleFilter={setFilter}
+            style={styles.categoryFilter}
+          />
         </FinderBar>
         {!!error && <ErrorBox error={error} />}
         {loading ? <Loader /> : <TodoList list={activeTodos} />}
@@ -62,8 +104,13 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: colors.blue4,
   },
-  testText: {
-    margin: "20px 10vw",
+  clearButton: {
+    position: "relative",
+    marginRight: "50px",
+  },
+  categoryFilter: {
+    position: "relative",
+    right: "none",
   },
 });
 

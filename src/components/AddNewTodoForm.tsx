@@ -28,9 +28,11 @@ const AddNewTodoSchema = Yup.object().shape({
     .required(i18n.t("validation:requied")),
 });
 
-interface Props {}
+interface Props {
+  onSubmit?: () => void;
+}
 
-export const AddNewTodoForm: FC<Props> = () => {
+export const AddNewTodoForm: FC<Props> = ({ onSubmit }) => {
   const { handleNotification } = useNotification();
 
   const selectedMenu = document.getElementById(
@@ -68,6 +70,7 @@ export const AddNewTodoForm: FC<Props> = () => {
   const additionalResetForm = () => {
     setCategory("none");
     selectedMenu.value = "low";
+    onSubmit?.();
   };
 
   const handleOnSubmit = (values: ITodo, actions: FormikHelpers<ITodo>) => {
